@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/client": "^3.3.13",
     "@babel/preset-env": "^7.9.5",
     "express": "^4.17.1",
     "express-graphql": "^0.12.0",

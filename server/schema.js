@@ -22,12 +22,9 @@ const RootQuery = new GraphQLObjectType({
             type: UserType,
             args: { id: { type: GraphQLID }, name: { type: GraphQLString } },
             resolve(parent, args) {
-                const query = `SELECT * from users WHERE name='${args.name}'`
+                const query = `SELECT * from users WHERE id='${args.id}'`
                 return client.query(query)
-                .then((response) => {
-                    console.log(response.rows[0])
-                    return response.rows[0]
-                })
+                .then((response) => response.rows[0])
             }
         }
     }
