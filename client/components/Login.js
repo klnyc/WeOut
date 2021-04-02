@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { useLazyQuery, gql } from '@apollo/client'
 
 const Login = (props) => {
+    const { setUser } = props
     const [input, setInput] = useState({ email: "", password: "" })
     const [loginState, setLoginState] = useState(true)
-    const { setUser } = props
+    const [error, setError] = useState("")
 
-    const findUser = gql`
+    const GET_USER = gql`
         query RootQuery {
             user(email: "${input.email}", password: "${input.password}") {
                 id
@@ -15,22 +16,19 @@ const Login = (props) => {
             }
         }
     `
-    const [getUser] = useLazyQuery(findUser, {
-        onCompleted: (data) => {
-            setUser(data.user)
-        }
+
+    const [getUser] = useLazyQuery(GET_USER, {
+        onCompleted: (data) => data.user ? setUser(data.user) : setError("Invalid credentials")
     })
 
-    const logIn = () => {
-        getUser()
-    }
+    const logIn = () => getUser()
 
     const signUp = () => {
 
     }
 
     const handleSubmit = (event) => {
-        if (event) event.preventDefault()
+        event.preventDefault()
         event.target.name === 'logIn' ? logIn() : signUp()
     }
 
@@ -54,6 +52,7 @@ const Login = (props) => {
                     <button type="button" className="btn btn-info mx-2" onClick={() => setLoginState(!loginState)}>{loginState ? "Create account" : "I have an account"}</button>
                 </div>
             </form>
+            <div>{error}</div>
         </div>
     )
 }

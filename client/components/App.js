@@ -9,7 +9,7 @@ const App = () => {
         <Router>
             <div>
                 <Switch>
-                    <Route path="/">{user.id ? <Home /> : <Login setUser={setUser} />}</Route>
+                    <Route path="/">{user.id ? <Home user={user} setUser={setUser} /> : <Login setUser={setUser} />}</Route>
                 </Switch>
             </div>
         </Router>
