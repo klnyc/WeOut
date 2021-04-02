@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLazyQuery, gql } from '@apollo/client'
+import { useMutation, useLazyQuery, gql } from '@apollo/client'
 
 const Login = (props) => {
     const { setUser } = props
@@ -7,9 +7,9 @@ const Login = (props) => {
     const [loginState, setLoginState] = useState(true)
     const [error, setError] = useState("")
 
-    const GET_USER = gql`
-        query RootQuery {
-            user(email: "${input.email}", password: "${input.password}") {
+    const LOGIN = gql`
+        query RootQuery($email: String, $password: String) {
+            user(email: $email, password: $password) {
                 id
                 email
                 name
@@ -17,11 +17,11 @@ const Login = (props) => {
         }
     `
 
-    const [getUser] = useLazyQuery(GET_USER, {
+    const [getUser] = useLazyQuery(LOGIN, {
         onCompleted: (data) => data.user ? setUser(data.user) : setError("Invalid credentials")
     })
 
-    const logIn = () => getUser()
+    const logIn = () => getUser({ variables: { email: input.email, password: input.password }})
 
     const signUp = () => {
 
