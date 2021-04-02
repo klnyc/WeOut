@@ -20,9 +20,9 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         user: {
             type: UserType,
-            args: { id: { type: GraphQLID }, name: { type: GraphQLString } },
+            args: { email: { type: GraphQLString }, password: { type: GraphQLString } },
             resolve(parent, args) {
-                const query = `SELECT * from users WHERE id='${args.id}'`
+                const query = `SELECT * from users WHERE email='${args.email}' AND password='${args.password}'`
                 return client.query(query)
                 .then((response) => response.rows[0])
             }
