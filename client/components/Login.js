@@ -38,7 +38,7 @@ const Login = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        event.target.name === 'logIn' ? logIn({ variables }) : signUp({ variables })
+        event.target.name === 'logIn' ? logIn(variables) : signUp(variables)
     }
 
     const handleInputChange = (event) => {

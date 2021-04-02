@@ -43,7 +43,7 @@ const Mutation = new GraphQLObjectType({
             resolve(parent, args) {
                 const add = `
                 INSERT INTO users (email, password, name) 
-                VALUES ('${args.email}', '${args.password}', '${args.name}')
+                VALUES ('${args.email}', '${args.password}', '${args.email}')
                 `
 
                 const query = `
