@@ -6,6 +6,7 @@ const Login = (props) => {
     const [input, setInput] = useState({ email: "", password: "" })
     const [loginState, setLoginState] = useState(true)
     const [error, setError] = useState("")
+    const variables = { variables: { email: input.email, password: input.password } }
 
     const LOGIN = gql`
         query RootQuery($email: String, $password: String) {
@@ -17,19 +18,27 @@ const Login = (props) => {
         }
     `
 
-    const [getUser] = useLazyQuery(LOGIN, {
+    const SIGNUP = gql`
+        mutation RootQuery($email: String, $password: String) {
+            signUp(email: $email, password: $password) {
+                id
+                email
+                name
+            }
+        }
+    `
+
+    const [logIn] = useLazyQuery(LOGIN, {
         onCompleted: (data) => data.user ? setUser(data.user) : setError("Invalid credentials")
     })
 
-    const logIn = () => getUser({ variables: { email: input.email, password: input.password }})
-
-    const signUp = () => {
-
-    }
+    const [signUp] = useMutation(SIGNUP, {
+        onCompleted: (data) => setUser(data.signUp)
+    })
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        event.target.name === 'logIn' ? logIn() : signUp()
+        event.target.name === 'logIn' ? logIn({ variables }) : signUp({ variables })
     }
 
     const handleInputChange = (event) => {

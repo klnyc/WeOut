@@ -22,7 +22,11 @@ const RootQuery = new GraphQLObjectType({
             type: UserType,
             args: { email: { type: GraphQLString }, password: { type: GraphQLString } },
             resolve(parent, args) {
-                const query = `SELECT * from users WHERE email='${args.email}' AND password='${args.password}'`
+                const query = `
+                SELECT * FROM users 
+                WHERE email='${args.email}' 
+                AND password='${args.password}'
+                `
                 return client.query(query)
                 .then((response) => response.rows[0])
             }
@@ -30,4 +34,30 @@ const RootQuery = new GraphQLObjectType({
     }
 })
 
-module.exports = new GraphQLSchema({ query: RootQuery })
+const Mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        signUp: {
+            type: UserType,
+            args: { email: { type: GraphQLString }, password: { type: GraphQLString }, name: { type: GraphQLString } },
+            resolve(parent, args) {
+                const add = `
+                INSERT INTO users (email, password, name) 
+                VALUES ('${args.email}', '${args.password}', '${args.name}')
+                `
+
+                const query = `
+                SELECT * FROM users
+                WHERE email='${args.email}' 
+                AND password='${args.password}'
+                `
+
+                return client.query(add)
+                .then(() => client.query(query))
+                .then((response) => response.rows[0])
+            }
+        }
+    }
+})
+
+module.exports = new GraphQLSchema({ query: RootQuery, mutation: Mutation })
