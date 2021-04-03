@@ -14,6 +14,11 @@ const Login = (props) => {
                 id
                 email
                 name
+                circles {
+                    id
+                    name
+                    description
+                }
             }
         }
     `
@@ -24,6 +29,11 @@ const Login = (props) => {
                 id
                 email
                 name
+                circles {
+                    id
+                    name
+                    description
+                }
             }
         }
     `
