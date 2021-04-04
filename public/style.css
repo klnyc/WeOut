@@ -13,7 +13,39 @@ code {
 }
 
 #app {
-  background-color: blanchedalmond;
+  background-color: aliceblue;
   min-height: 100vh;
+}
+
+.circles-bar {
+  position: absolute;
+  width: 120px;
+  height: 100vh;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #222235;
+  color: ghostwhite;
+}
+
+.circle {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  background-color: lightblue;
+  color: black;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  text-align: center;
+}
+
+.circle p {
+  margin: 0
+}
+
+.main-section {
+  margin: 0 0 0 120px;
+  height: 100vh;
 }
 

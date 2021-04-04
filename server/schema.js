@@ -1,4 +1,3 @@
-const { query } = require('express')
 const graphql = require('graphql')
 const { Client } = require('pg')
 const client = new Client('postgres://localhost:5432/WeOut')
