@@ -25,6 +25,20 @@ const UserType = new GraphQLObjectType({
                 return client.query(queryCircles)
                 .then((response) => response.rows)
             }
+        },
+        events: {
+            type: new GraphQLList(EventType),
+            resolve(parent, args) {
+                const queryEvents = `
+                SELECT event.id, event.name, event.location, event.description, event.date, event.time
+                FROM ((circle 
+                INNER JOIN user_circle ON user_circle.circleid = circle.id)
+                INNER JOIN event ON circle.id = event.circleid)
+                WHERE user_circle.userid=${parent.id}
+                `
+                return client.query(queryEvents)
+                .then((response) => response.rows)
+            }
         }
     })
 })
@@ -35,6 +49,32 @@ const CircleType = new GraphQLObjectType({
         id: { type: GraphQLID },
         name: { type: GraphQLString },
         description: { type: GraphQLString }
+    })
+})
+
+const EventType = new GraphQLObjectType({
+    name: 'Event',
+    fields: () => ({
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        location: { type: GraphQLString },
+        description: { type: GraphQLString },
+        date: { type: GraphQLString },
+        time: { type: GraphQLString },
+        circle: {
+            type: CircleType,
+            resolve(parent, args) {
+                const queryCircle = `
+                SELECT circle.id, circle.name, circle.description
+                FROM event INNER JOIN circle
+                ON event.circleid = circle.id
+                WHERE event.id = ${parent.id}
+                `
+
+                return client.query(queryCircle)
+                .then((response) => response.rows[0])
+            }
+        }
     })
 })
 
@@ -65,7 +105,19 @@ const RootQuery = new GraphQLObjectType({
                 return client.query(queryCircle)
                 .then((response) => response.rows[0])
             }
-        }
+        },
+        event: {
+            type: EventType,
+            args: { id: { type: GraphQLID }},
+            resolve(parent, args) {
+                const queryEvent = `
+                SELECT * FROM event
+                WHERE id='${args.id}'
+                `
+                return client.query(queryEvent)
+                .then((response) => response.rows[0])
+            }
+        },
     }
 })
 

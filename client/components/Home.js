@@ -10,6 +10,13 @@ const Home = (props) => {
             <div>Circles</div>
             {user.circles.map((circle, index) => <div key={index}>{circle.name} {circle.description}</div>)}
             <div>Upcoming Events</div>
+            {user.events.map((event, index) => 
+                <div key={index}>
+                    <div>{event.name}</div>
+                    <div>{event.location}</div>
+                    <div>{event.description}</div>
+                    <div>{event.date}</div>
+                </div>)}
             <button type="button" className="btn btn-danger mx-2" onClick={() => setUser({})}>Sign Out</button>
         </div>
     )

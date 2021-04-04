@@ -14,11 +14,8 @@ const Login = (props) => {
                 id
                 email
                 name
-                circles {
-                    id
-                    name
-                    description
-                }
+                circles { id name description }
+                events { id name location description date time }
             }
         }
     `
@@ -29,11 +26,8 @@ const Login = (props) => {
                 id
                 email
                 name
-                circles {
-                    id
-                    name
-                    description
-                }
+                circles { id name description }
+                events { id name location description date time }
             }
         }
     `
