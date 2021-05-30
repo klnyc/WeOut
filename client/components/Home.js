@@ -14,7 +14,7 @@ const Home = (props) => {
             <div className="main-section">
                 <h6>Upcoming Events</h6>
                 {user.events.map((event, index) => 
-                    <div key={index}>
+                    <div key={index} className="event container">
                         <div>{event.name}</div>
                         <div>{event.location}</div>
                         <div>{event.description}</div>
