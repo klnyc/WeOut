@@ -1,6 +1,8 @@
-.App {
-  color: navy;
-  background-color: silver;
+$color-primary: navy;
+$color-secondary: gainsboro;
+
+.app {
+  color: $color-primary;
+  background-color: $color-secondary;
   min-height: 100vh;
-  font-size: calc(10px + 2vmin);
 }

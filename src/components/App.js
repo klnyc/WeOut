@@ -1,11 +1,11 @@
-import styles from "./styles/App.module.scss";
+import sx from "./styles/App.module.scss";
 
-function App() {
+const App = () => {
   return (
-    <div className={styles.App}>
-        <p>WeOut</p>
+    <div className={sx.app}>
+      <p>WeOut</p>
     </div>
   );
-}
+};
 
 export default App;
