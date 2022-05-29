@@ -1,6 +1,7 @@
+import { useState } from "react";
 import "./styles/App.scss";
 import { Login } from "./pages/Login";
-import { useState } from "react";
+import { Home } from "./pages/Home";
 
 const App = () => {
   const [user, setUser] = useState(undefined);
@@ -9,7 +10,7 @@ const App = () => {
     if (!user) {
       return <Login setUser={setUser} />;
     } else {
-      return <div>Chat room</div>;
+      return <Home />;
     }
   };
 

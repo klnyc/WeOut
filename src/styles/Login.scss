@@ -11,15 +11,6 @@
   padding: $padding-primary;
 }
 
-.btn-link {
-  color: $color-black;
-
-  &:focus {
-    box-shadow: none;
-    outline: none;
-  }
-}
-
 .login--error {
   color: red;
   text-align: center;
@@ -31,4 +22,16 @@
     box-shadow: none;
     border-color: transparent;
   }
+}
+
+.btn-primary {
+  background-color: $color-primary;
+
+  &:hover {
+    background-color: $color-primary;
+  }
+}
+
+.btn-link {
+  color: $color-black;
 }

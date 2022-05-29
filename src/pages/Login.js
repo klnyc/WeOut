@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/App.scss";
 import "../styles/Login.scss";
-import { logIn, signUp } from "../services";
+import { authenticateUser, createUser } from "../services";
 
 export const Login = ({ setUser }) => {
   const [credentials, setCredentials] = useState({
@@ -20,8 +20,8 @@ export const Login = ({ setUser }) => {
 
     try {
       const user = loginState
-        ? await logIn(credentials.screenName, credentials.password)
-        : await signUp(credentials.screenName, credentials.password);
+        ? await authenticateUser(credentials.screenName, credentials.password)
+        : await createUser(credentials.screenName, credentials.password);
       setUser(user);
       setError("");
     } catch (error) {
