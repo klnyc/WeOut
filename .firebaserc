@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "we-out"
+  },
+  "targets": {
+    "we-out": {
+      "hosting": {
+        "weout": [
+          "weout"
+        ]
+      }
+    }
+  }
+}
