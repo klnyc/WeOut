@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../styles/App.scss";
 import "../styles/Login.scss";
+import { logIn } from "../services";
 
-export const Login = () => {
+export const Login = ({ setUser }) => {
   const [credentials, setCredentials] = useState({
     screenName: "",
     password: "",
@@ -10,18 +11,24 @@ export const Login = () => {
   const [loginState, setLoginState] = useState(true);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    try {
-    } catch (error) {
-      setError(error);
-    }
-  }, []);
-
   const handleCredentialChange = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
   };
 
-  const handleLogin = () => {};
+  const handleLogin = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await logIn(
+        credentials.screenName,
+        credentials.password
+      );
+      setUser(response.user);
+      setError("");
+    } catch (error) {
+      setError("Invalid credentials");
+    }
+  };
 
   return (
     <div className="login--page">
@@ -52,13 +59,14 @@ export const Login = () => {
         </div>
         <div className="text-center mb-3">
           <button
+            type="button"
             className="btn btn-link"
             onClick={() => setLoginState(!loginState)}
           >
             {loginState ? "Create account" : "Login"}
           </button>
         </div>
-        <div className="login--error">{error}</div>
+        {error && <div className="login--error">{error}</div>}
       </form>
     </div>
   );
