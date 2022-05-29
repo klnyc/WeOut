@@ -1,20 +1,16 @@
 @import "./App.scss";
 
-.login--page {
-  height: 100vh;
-}
-
 .login--form_panel {
   width: 360px;
   height: 100%;
   border-right: 1px solid $color-gray;
-  padding: $padding-primary;
+  padding: $spacing-primary;
 }
 
 .login--error {
   color: red;
   text-align: center;
-  padding: $padding-primary;
+  padding: $spacing-primary;
 }
 
 .form-control {

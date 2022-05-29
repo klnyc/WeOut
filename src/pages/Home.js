@@ -1,5 +1,9 @@
-export const Home = () => {
-  return <div>
+import { Navigation } from "../components/Navigation";
 
-  </div>;
+export const Home = ({ user }) => {
+  return (
+    <div className="home--page">
+      <Navigation user={user} />
+    </div>
+  );
 };

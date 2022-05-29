@@ -4,13 +4,16 @@ import { Login } from "./pages/Login";
 import { Home } from "./pages/Home";
 
 const App = () => {
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState({
+    screenName: "klai",
+    circles: ["Church", "Ball", "Little John's Birthday Party"],
+  });
 
   const renderApp = () => {
     if (!user) {
       return <Login setUser={setUser} />;
     } else {
-      return <Home />;
+      return <Home user={user} />;
     }
   };
 

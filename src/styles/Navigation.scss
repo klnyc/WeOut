@@ -1,0 +1,20 @@
+@import "./App.scss";
+
+.navigation--panel {
+  width: 160px;
+  height: 100%;
+  border-right: 1px solid $color-gray;
+  padding: $spacing-primary;
+}
+
+.navigation--circle {
+  border: 1px solid $color-black;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  margin-bottom: $spacing-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}

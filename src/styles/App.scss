@@ -3,12 +3,17 @@ $color-secondary: #f3f3f3;
 $color-black: #202020;
 $color-gray: darkgray;
 
-$padding-primary: 20px;
+$spacing-primary: 20px;
 
 .app {
   color: $color-primary;
   background-color: $color-secondary;
   min-height: 100vh;
+}
+
+.login--page,
+.home--page {
+  height: 100vh;
 }
 
 .btn {
