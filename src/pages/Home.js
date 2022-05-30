@@ -1,9 +1,9 @@
-import { Navigation } from "../components/Navigation";
+import { CircleBar } from "../components/CircleBar";
 
 export const Home = ({ user }) => {
   return (
     <div className="home--page">
-      <Navigation user={user} />
+      <CircleBar user={user} />
     </div>
   );
 };
