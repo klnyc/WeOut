@@ -1,0 +1,10 @@
+.chatRoom--component {
+  width: 100%;
+  transition: all 0.3s ease;
+
+  &.shrink {
+    margin-left: 160px;
+  }
+}
+
+

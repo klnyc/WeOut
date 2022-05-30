@@ -1,14 +1,15 @@
 @import "./App.scss";
 
-.navigation--panel {
+.circleBar--panel {
   width: 160px;
   height: 100%;
   border-right: 1px solid $color-gray;
   padding: $spacing-primary;
+  transition: 0.3s;
   visibility: visible;
 }
 
-.navigation--circle {
+.circleBar--circle {
   border: 1px solid $color-black;
   height: 120px;
   width: 120px;
