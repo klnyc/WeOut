@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
+  signOut,
 } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
@@ -17,8 +18,16 @@ export const authenticateUser = async (screenName, password) => {
       email,
       password
     );
-    const user = await getDoc(doc(firestore, USERS, response.user.displayName));
-    return user;
+    return response.user;
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const getUser = async (screenName) => {
+  try {
+    const user = await getDoc(doc(firestore, USERS, screenName));
+    return user.data();
   } catch (error) {
     throw Error(error);
   }
@@ -41,3 +50,13 @@ export const createUser = async (screenName, password) => {
     throw Error(error);
   }
 };
+
+export const signOutUser = async () => {
+  try {
+    await signOut(firebaseAuth);
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const getSessionUserId = () => {};
