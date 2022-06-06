@@ -16,21 +16,21 @@ export const Login = ({ setUser }) => {
   };
 
   const handleLogin = async (event) => {
+    const { screenName, password } = credentials;
     event.preventDefault();
 
     try {
       let user;
       if (loginState) {
-        const response = await authenticateUser(
-          credentials.screenName,
-          credentials.password
-        );
-        user = await getUser(response.displayName);
+        await authenticateUser(screenName, password);
+        user = await getUser(screenName);
       } else {
-        user = await createUser(credentials.screenName, credentials.password);
+        await createUser(screenName, password);
+        user = await getUser(screenName);
       }
       setUser(user);
       setError("");
+      window.sessionStorage.setItem("screenName", screenName);
     } catch (error) {
       setError(error.message);
     }

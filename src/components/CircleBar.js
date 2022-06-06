@@ -5,6 +5,7 @@ export const CircleBar = ({ user, showCircleBar, setUser }) => {
   const handleSignOut = async () => {
     await signOutUser();
     setUser();
+    window.sessionStorage.removeItem("screenName");
   };
 
   return (
@@ -16,14 +17,13 @@ export const CircleBar = ({ user, showCircleBar, setUser }) => {
       >
         <div>{user.screenName}</div>
         <div>
-          {user.circles.length &&
-            user.circles.map((circleName) => {
-              return (
-                <div key={circleName} className="circleBar--circle">
-                  {circleName}
-                </div>
-              );
-            })}
+          {user.circles.map((circleName) => {
+            return (
+              <div key={circleName} className="circleBar--circle">
+                {circleName}
+              </div>
+            );
+          })}
           <div className="circleBar--circle">+</div>
           <button
             type="button"
