@@ -50,4 +50,4 @@ export const signOutUser = async () => {
   }
 };
 
-export const getSessionUserId = () => {};
+

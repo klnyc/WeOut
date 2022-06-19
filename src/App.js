@@ -3,6 +3,7 @@ import "./styles/App.scss";
 import { Login } from "./pages/Login";
 import { Home } from "./pages/Home";
 import { getUser } from "./services";
+import { SCREEN_NAME } from "./utility";
 
 // const mock = {
 //   screenName: "klai",
@@ -11,19 +12,18 @@ import { getUser } from "./services";
 
 const App = () => {
   const [user, setUser] = useState();
+  const screenName = window.sessionStorage.getItem(SCREEN_NAME);
+
+  const fetchUser = async () => {
+    const user = await getUser(screenName);
+    setUser(user);
+  };
 
   useEffect(() => {
-    const screenName = window.sessionStorage.getItem("screenName");
-
-    const fetchUser = async () => {
-      const user = await getUser(screenName);
-      setUser(user);
-    };
-
     if (screenName && !user) {
       fetchUser();
     }
-  }, [user]);
+  });
 
   const renderApp = () => {
     if (!user) {

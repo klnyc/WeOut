@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/App.scss";
 import "../styles/Login.scss";
 import { authenticateUser, createUser, getUser } from "../services";
+import { SCREEN_NAME } from "../utility";
 
 export const Login = ({ setUser }) => {
   const [credentials, setCredentials] = useState({
@@ -20,17 +21,13 @@ export const Login = ({ setUser }) => {
     event.preventDefault();
 
     try {
-      let user;
-      if (loginState) {
-        await authenticateUser(screenName, password);
-        user = await getUser(screenName);
-      } else {
-        await createUser(screenName, password);
-        user = await getUser(screenName);
-      }
+      loginState
+        ? await authenticateUser(screenName, password)
+        : await createUser(screenName, password);
+      const user = await getUser(screenName);
       setUser(user);
       setError("");
-      window.sessionStorage.setItem("screenName", screenName);
+      window.sessionStorage.setItem(SCREEN_NAME, screenName);
     } catch (error) {
       setError(error.message);
     }
