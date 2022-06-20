@@ -5,11 +5,6 @@ import { Home } from "./pages/Home";
 import { getUser } from "./services";
 import { SCREEN_NAME } from "./utility";
 
-// const mock = {
-//   screenName: "klai",
-//   circles: ["Church", "Ball", "Little John's Birthday Party"],
-// }
-
 const App = () => {
   const [user, setUser] = useState();
   const screenName = window.sessionStorage.getItem(SCREEN_NAME);
