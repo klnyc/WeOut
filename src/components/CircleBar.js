@@ -1,28 +1,26 @@
 import "../styles/CircleBar.scss";
-import { signOutUser } from "../services";
+import { signOutUser, getCircle } from "../services";
 import { SCREEN_NAME } from "../utility";
 import { useEffect, useState } from "react";
 import { AddCircleModal } from "./AddCircleModal";
 
 export const CircleBar = ({ user, showCircleBar, setUser }) => {
-  const mock = [
-    { circleId: "1", name: "Church" },
-    { circleId: "11", name: "Ball" },
-    { circleId: "12", name: "Hockey" },
-    { circleId: "13", name: "Dinner" },
-  ];
   const [circles, setCircles] = useState([]);
 
-  useEffect(() => {
-    setCircles(mock);
-    console.log("!");
-  }, []);
+  const fetchCircles = async () => {
+    const response = await Promise.all(user.circles.map((id) => getCircle(id)));
+    setCircles(response);
+  };
 
   const handleSignOut = async () => {
     await signOutUser();
     setUser();
     window.sessionStorage.removeItem(SCREEN_NAME);
   };
+
+  useEffect(() => {
+    fetchCircles();
+  });
 
   return (
     <div>
@@ -35,7 +33,7 @@ export const CircleBar = ({ user, showCircleBar, setUser }) => {
         <div>
           {circles.map((circle) => {
             return (
-              <div key={circle.circleId} className="circleBar--circle">
+              <div key={circle.id} className="circleBar--circle">
                 {circle.name}
               </div>
             );

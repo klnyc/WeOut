@@ -7,6 +7,7 @@ import { SCREEN_NAME } from "./utility";
 
 const App = () => {
   const [user, setUser] = useState();
+
   const screenName = window.sessionStorage.getItem(SCREEN_NAME);
 
   const fetchUser = async () => {

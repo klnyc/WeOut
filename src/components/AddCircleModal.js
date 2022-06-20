@@ -1,9 +1,17 @@
 import { useState } from "react";
+import { createCircle } from "../services";
+import { SCREEN_NAME } from "../utility";
 
 export const AddCircleModal = () => {
   const [circleName, setCircleName] = useState("");
 
+  const screenName = window.sessionStorage.getItem(SCREEN_NAME);
+
   const handleCircleNameChange = (event) => setCircleName(event.target.value);
+  const handleAddCircle = async () => {
+    await createCircle(circleName, screenName);
+    setCircleName("");
+  };
 
   return (
     <div className="modal fade" id="addCircleModal">
@@ -35,7 +43,12 @@ export const AddCircleModal = () => {
             >
               Close
             </button>
-            <button type="button" className="btn btn-primary">
+            <button
+              type="button"
+              className="btn btn-primary"
+              data-bs-dismiss="modal"
+              onClick={handleAddCircle}
+            >
               Add
             </button>
           </div>
