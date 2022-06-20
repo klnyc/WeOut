@@ -5,12 +5,10 @@ import {
   signOut,
 } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-
-// Collections
-const USERS = "users";
+import { USERS, EMAIL_DOMAIN } from "../utility";
 
 export const authenticateUser = async (screenName, password) => {
-  const email = screenName + "@weout.web.app";
+  const email = screenName + EMAIL_DOMAIN;
   try {
     await signInWithEmailAndPassword(firebaseAuth, email, password);
   } catch (error) {
@@ -28,7 +26,7 @@ export const getUser = async (screenName) => {
 };
 
 export const createUser = async (screenName, password) => {
-  const email = screenName + "@weout.web.app";
+  const email = screenName + EMAIL_DOMAIN;
   const user = {
     screenName,
     circles: [],
@@ -49,5 +47,3 @@ export const signOutUser = async () => {
     throw Error(error);
   }
 };
-
-
