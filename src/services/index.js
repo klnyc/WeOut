@@ -11,6 +11,7 @@ import {
   collection,
   updateDoc,
   arrayUnion,
+  deleteDoc,
 } from "firebase/firestore";
 import { USERS, CIRCLES, EMAIL_DOMAIN } from "../utility";
 
@@ -81,6 +82,24 @@ export const getCircle = async (id) => {
     const circleDoc = doc(firestore, CIRCLES, id);
     const circle = await getDoc(circleDoc);
     return circle.data();
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const listCircles = async (circleIds) => {
+  try {
+    const response = await Promise.all(circleIds.map((id) => getCircle(id)));
+    return response;
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const deleteCircle = async (circleId) => {
+  try {
+    const circleDoc = doc(firestore, CIRCLES, circleId);
+    await deleteDoc(circleDoc);
   } catch (error) {
     throw Error(error);
   }

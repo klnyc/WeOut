@@ -1,16 +1,11 @@
 import "../styles/CircleBar.scss";
-import { signOutUser, getCircle } from "../services";
+import { signOutUser, listCircles } from "../services";
 import { SCREEN_NAME } from "../utility";
 import { useEffect, useState } from "react";
 import { AddCircleModal } from "./AddCircleModal";
 
 export const CircleBar = ({ user, showCircleBar, setUser }) => {
   const [circles, setCircles] = useState([]);
-
-  const fetchCircles = async () => {
-    const response = await Promise.all(user.circles.map((id) => getCircle(id)));
-    setCircles(response);
-  };
 
   const handleSignOut = async () => {
     await signOutUser();
@@ -19,8 +14,12 @@ export const CircleBar = ({ user, showCircleBar, setUser }) => {
   };
 
   useEffect(() => {
+    const fetchCircles = async () => {
+      const response = await listCircles(user.circles);
+      setCircles(response);
+    };
     fetchCircles();
-  });
+  }, [user.circles]);
 
   return (
     <div>
@@ -55,7 +54,7 @@ export const CircleBar = ({ user, showCircleBar, setUser }) => {
             Sign out
           </button>
 
-          {<AddCircleModal />}
+          {<AddCircleModal setUser={setUser} />}
         </div>
       </div>
     </div>
