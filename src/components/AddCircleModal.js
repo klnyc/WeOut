@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { createCircle, getUser } from "../services";
-import { SCREEN_NAME } from "../utility";
+import { createCircle } from "../services";
 
-export const AddCircleModal = ({ setUser }) => {
+export const AddCircleModal = ({ user, fetchUser }) => {
   const [circleName, setCircleName] = useState("");
 
-  const screenName = window.sessionStorage.getItem(SCREEN_NAME);
-
   const handleCircleNameChange = (event) => setCircleName(event.target.value);
+
   const handleAddCircle = async () => {
-    await createCircle(circleName, screenName);
-    const user = await getUser(screenName);
-    setUser(user);
+    await createCircle(circleName, user.screenName);
+    fetchUser();
     setCircleName("");
   };
 

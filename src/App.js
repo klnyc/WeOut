@@ -25,7 +25,7 @@ const App = () => {
     if (!user) {
       return <Login setUser={setUser} />;
     } else {
-      return <Home user={user} setUser={setUser} />;
+      return <Home user={user} setUser={setUser} fetchUser={fetchUser} />;
     }
   };
 

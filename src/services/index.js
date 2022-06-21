@@ -11,6 +11,7 @@ import {
   collection,
   updateDoc,
   arrayUnion,
+  arrayRemove,
   deleteDoc,
 } from "firebase/firestore";
 import { USERS, CIRCLES, EMAIL_DOMAIN } from "../utility";
@@ -96,10 +97,13 @@ export const listCircles = async (circleIds) => {
   }
 };
 
-export const deleteCircle = async (circleId) => {
+export const deleteCircle = async (circleId, screenName) => {
   try {
     const circleDoc = doc(firestore, CIRCLES, circleId);
+    const userDoc = doc(firestore, USERS, screenName);
+
     await deleteDoc(circleDoc);
+    await updateDoc(userDoc, { circles: arrayRemove(circleId) });
   } catch (error) {
     throw Error(error);
   }

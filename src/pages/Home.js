@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CircleBar } from "../components/CircleBar";
 import { ChatRoom } from "../components/ChatRoom";
 
-export const Home = ({ user, setUser }) => {
+export const Home = ({ user, setUser, fetchUser }) => {
   const [showCircleBar, setShowCircleBar] = useState(true);
 
   return (
@@ -12,6 +12,7 @@ export const Home = ({ user, setUser }) => {
         showCircleBar={showCircleBar}
         setShowCircleBar={setShowCircleBar}
         setUser={setUser}
+        fetchUser={fetchUser}
       />
       <ChatRoom
         showCircleBar={showCircleBar}
