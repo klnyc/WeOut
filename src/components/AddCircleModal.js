@@ -4,7 +4,7 @@ import { createCircle } from "../services";
 export const AddCircleModal = ({ user, fetchUser }) => {
   const [circleName, setCircleName] = useState("");
 
-  const handleCircleNameChange = (event) => setCircleName(event.target.value);
+  const handleCircleName = (event) => setCircleName(event.target.value);
 
   const handleAddCircle = async () => {
     await createCircle(circleName, user.screenName);
@@ -31,7 +31,7 @@ export const AddCircleModal = ({ user, fetchUser }) => {
               className="form-control"
               placeholder="Circle name"
               value={circleName}
-              onChange={handleCircleNameChange}
+              onChange={handleCircleName}
             />
           </div>
           <div className="modal-footer">

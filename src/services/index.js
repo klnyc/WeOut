@@ -97,13 +97,18 @@ export const listCircles = async (circleIds) => {
   }
 };
 
-export const deleteCircle = async (circleId, screenName) => {
+export const deleteCircle = async (circleId) => {
   try {
     const circleDoc = doc(firestore, CIRCLES, circleId);
-    const userDoc = doc(firestore, USERS, screenName);
+    const circle = await getDoc(circleDoc);
+    const users = circle.data().users;
+
+    users.forEach(async (screenName) => {
+      const userDoc = doc(firestore, USERS, screenName);
+      await updateDoc(userDoc, { circles: arrayRemove(circleId) });
+    });
 
     await deleteDoc(circleDoc);
-    await updateDoc(userDoc, { circles: arrayRemove(circleId) });
   } catch (error) {
     throw Error(error);
   }
