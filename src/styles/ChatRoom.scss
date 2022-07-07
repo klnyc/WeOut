@@ -3,13 +3,10 @@
 .chatRoom--component {
   transition: all 0.3s ease;
   height: 100%;
+  padding: 0;
+  margin: 0;
 
   &.shrink {
     margin-left: $circleBar-width;
   }
-}
-
-.textArea--component {
-  border-top: 1px solid $color-gray;
-  height: 200px;
 }

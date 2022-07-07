@@ -1,22 +1,19 @@
 import "../styles/ChatRoom.scss";
+import { Messages } from "./Messages";
+import { TextArea } from "./TextArea";
 
 export const ChatRoom = ({ showCircleBar, setShowCircleBar }) => {
   return (
     <div
-      className={`container chatRoom--component ${showCircleBar && "shrink"}`}
+      className={`row row-cols-1 chatRoom--component ${
+        showCircleBar && "shrink"
+      }`}
     >
-      <div className="row row-cols-1">
-        <div className="col">
-          Messages{" "}
-          <button
-            className="m-3"
-            onClick={() => setShowCircleBar(!showCircleBar)}
-          >
-            Toggle bar
-          </button>
-        </div>
-        <div className="col textArea--component">Text Area</div>
-      </div>
+      <Messages
+        setShowCircleBar={setShowCircleBar}
+        showCircleBar={showCircleBar}
+      />
+      <TextArea />
     </div>
   );
 };

@@ -1,0 +1,5 @@
+@import "./App.scss";
+
+.messages--component {
+  height: calc(100% - #{$textArea-height});
+}
