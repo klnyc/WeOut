@@ -1,4 +1,4 @@
-import { firebaseAuth, firestore } from "../firebase";
+import { firebaseAuth, firestore } from "./firebase";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -14,7 +14,7 @@ import {
   arrayRemove,
   deleteDoc,
 } from "firebase/firestore";
-import { USERS, CIRCLES, EMAIL_DOMAIN } from "../utility";
+import { USERS, CIRCLES, EMAIL_DOMAIN } from "./utility";
 
 export const authenticateUser = async (screenName, password) => {
   const email = screenName + EMAIL_DOMAIN;
