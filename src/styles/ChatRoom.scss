@@ -1,9 +1,15 @@
+@import "./App.scss";
+
 .chatRoom--component {
   transition: all 0.3s ease;
+  height: 100%;
 
   &.shrink {
-    margin-left: 160px;
+    margin-left: $circleBar-width;
   }
 }
 
-
+.textArea--component {
+  border-top: 1px solid $color-gray;
+  height: 200px;
+}

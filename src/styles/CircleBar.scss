@@ -1,7 +1,7 @@
 @import "./App.scss";
 
 .circleBar--panel {
-  width: 160px;
+  width: $circleBar-width;
   height: 100%;
   border-right: 1px solid $color-gray;
   padding: $spacing-primary;

@@ -39,7 +39,7 @@ export const CircleBar = ({ user, showCircleBar, setUser, fetchUser }) => {
             return (
               <div key={circle.id} className="circleBar--circle">
                 {circle.name}
-                <div onClick={() => handleDeleteCircle(circle.id)}>x</div>
+                <div onClick={() => handleDeleteCircle(circle.id)}>|x|</div>
               </div>
             );
           })}
