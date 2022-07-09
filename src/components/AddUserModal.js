@@ -1,28 +1,28 @@
 import { useState } from "react";
-import { createCircle } from "../services";
+import { updateCircle } from "../services";
 
-export const AddCircleModal = ({ user, fetchUser }) => {
-  const [circleName, setCircleName] = useState("");
+export const AddUserModal = ({ currentCircle, fetchUser }) => {
+  const [newUser, setNewUser] = useState("");
 
-  const handleCircleName = (event) => setCircleName(event.target.value);
+  const handleNewUser = (event) => setNewUser(event.target.value);
 
-  const handleAddCircle = async () => {
-    await createCircle(circleName, user.screenName);
+  const handleAddUser = async () => {
+    await updateCircle({ circleId: currentCircle.id, userToAdd: newUser });
     fetchUser();
-    setCircleName("");
+    setNewUser("");
   };
 
   return (
-    <div className="modal fade" id="addCircleModal">
+    <div className="modal fade" id="addUserModal">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-body">
             <input
-              name="circleName"
+              name="newUser"
               className="form-control"
-              placeholder="Name of new circle"
-              value={circleName}
-              onChange={handleCircleName}
+              placeholder="Screen name of new member"
+              value={newUser}
+              onChange={handleNewUser}
             />
           </div>
           <div className="modal-footer">
@@ -37,7 +37,7 @@ export const AddCircleModal = ({ user, fetchUser }) => {
               type="button"
               className="btn btn-primary"
               data-bs-dismiss="modal"
-              onClick={handleAddCircle}
+              onClick={handleAddUser}
             >
               Add
             </button>
