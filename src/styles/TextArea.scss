@@ -3,4 +3,9 @@
 .textArea--component {
   border-top: 1px solid $color-gray;
   height: $textArea-height;
+  resize: none;
+
+  &:focus {
+    border-top: 1px solid $color-gray;
+  }
 }

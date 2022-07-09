@@ -1,5 +1,21 @@
+import { useState } from "react";
 import "../styles/TextArea.scss";
 
 export const TextArea = () => {
-  return <div className="col textArea--component">Text Area</div>;
+  const [textArea, setTextArea] = useState("");
+
+  const handleTextAreaChange = (event) => {
+    setTextArea(event.target.value);
+  };
+
+  return (
+    <textarea
+      className="col form-control textArea--component"
+      value={textArea}
+      onChange={handleTextAreaChange}
+      placeholder="Press enter to send..."
+    >
+      <button>Send</button>
+    </textarea>
+  );
 };
