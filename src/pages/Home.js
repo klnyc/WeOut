@@ -12,10 +12,21 @@ export const Home = ({ user, setUser, fetchUser }) => {
     const fetchCircles = async () => {
       const response = await listCircles(user.circles);
       setCircles(response);
-      setCurrentCircle(response[0]);
     };
     fetchCircles();
-  }, [user.circles]);
+  }, [user]);
+
+  useEffect(() => {
+    if (!circles.length) return;
+    if (!currentCircle) {
+      setCurrentCircle(circles[0]);
+    } else {
+      const updatedCircle = circles.find(
+        (circle) => circle.id === currentCircle.id
+      );
+      setCurrentCircle(updatedCircle);
+    }
+  }, [circles, currentCircle]);
 
   return (
     <div className="home--page">
@@ -29,9 +40,11 @@ export const Home = ({ user, setUser, fetchUser }) => {
         fetchUser={fetchUser}
       />
       <ChatRoom
+        user={user}
         currentCircle={currentCircle}
         showCircleBar={showCircleBar}
         setShowCircleBar={setShowCircleBar}
+        fetchUser={fetchUser}
       />
     </div>
   );

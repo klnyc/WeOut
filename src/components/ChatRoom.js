@@ -3,9 +3,11 @@ import { Messages } from "./Messages";
 import { TextArea } from "./TextArea";
 
 export const ChatRoom = ({
+  user,
   currentCircle,
   showCircleBar,
   setShowCircleBar,
+  fetchUser
 }) => {
   return (
     <div
@@ -18,7 +20,11 @@ export const ChatRoom = ({
         setShowCircleBar={setShowCircleBar}
         showCircleBar={showCircleBar}
       />
-      <TextArea />
+      <TextArea
+        user={user}
+        currentCircle={currentCircle}
+        fetchUser={fetchUser}
+      />
     </div>
   );
 };

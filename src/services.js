@@ -113,3 +113,16 @@ export const deleteCircle = async (circleId) => {
     throw Error(error);
   }
 };
+
+export const updateCircle = async (request) => {
+  try {
+    const { circleId, message } = request;
+
+    if (message) {
+      const circleDoc = doc(firestore, CIRCLES, circleId);
+      await updateDoc(circleDoc, { messages: arrayUnion(message) });
+    }
+  } catch (error) {
+    throw Error(error);
+  }
+};
