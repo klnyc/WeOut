@@ -1,12 +1,16 @@
 import "../styles/CircleBar.scss";
-import { signOutUser, listCircles, deleteCircle } from "../services";
+import { signOutUser, deleteCircle } from "../services";
 import { SCREEN_NAME } from "../utility";
-import { useEffect, useState } from "react";
 import { AddCircleModal } from "./AddCircleModal";
 
-export const CircleBar = ({ user, showCircleBar, setUser, fetchUser }) => {
-  const [circles, setCircles] = useState([]);
-
+export const CircleBar = ({
+  user,
+  circles,
+  setCurrentCircle,
+  showCircleBar,
+  setUser,
+  fetchUser,
+}) => {
   const handleSignOut = async () => {
     await signOutUser();
     setUser();
@@ -18,50 +22,40 @@ export const CircleBar = ({ user, showCircleBar, setUser, fetchUser }) => {
     fetchUser();
   };
 
-  useEffect(() => {
-    const fetchCircles = async () => {
-      const response = await listCircles(user.circles);
-      setCircles(response);
-    };
-    fetchCircles();
-  }, [user.circles]);
-
   return (
-    <div>
-      <div
-        className={`offcanvas offcanvas-start circleBar--panel ${
-          showCircleBar && "show"
-        }`}
-      >
-        <div>{user.screenName}</div>
-        <div>
-          {circles.map((circle) => {
-            return (
-              <div key={circle.id} className="circleBar--circle">
-                {circle.name}
-                <div onClick={() => handleDeleteCircle(circle.id)}>|x|</div>
-              </div>
-            );
-          })}
-          <div className="circleBar--circle">
-            <button
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#addCircleModal"
+    <div
+      className={`offcanvas offcanvas-start circleBar--panel ${
+        showCircleBar && "show"
+      }`}
+    >
+      <div>{user.screenName}</div>
+      <div>
+        {circles.map((circle) => {
+          return (
+            <div
+              key={circle.id}
+              className="circleBar--circle"
+              onClick={() => setCurrentCircle(circle)}
             >
-              +
-            </button>
-          </div>
+              {circle.name}
+              <div onClick={() => handleDeleteCircle(circle.id)}>|x|</div>
+            </div>
+          );
+        })}
+        <div className="circleBar--circle">
           <button
             type="button"
-            className="btn btn-light"
-            onClick={handleSignOut}
+            data-bs-toggle="modal"
+            data-bs-target="#addCircleModal"
           >
-            Sign out
+            +
           </button>
-
-          {<AddCircleModal user={user} fetchUser={fetchUser} />}
         </div>
+        <button type="button" className="btn btn-light" onClick={handleSignOut}>
+          Sign out
+        </button>
+
+        {<AddCircleModal user={user} fetchUser={fetchUser} />}
       </div>
     </div>
   );
