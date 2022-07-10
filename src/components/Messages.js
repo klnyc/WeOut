@@ -2,10 +2,11 @@ import "../styles/Messages.scss";
 import { AddUserModal } from "./AddUserModal";
 
 export const Messages = ({
+  user,
   currentCircle,
   setShowCircleBar,
   showCircleBar,
-  fetchUser,
+  setCircles,
 }) => {
   return (
     <div className="col messages--component">
@@ -37,7 +38,13 @@ export const Messages = ({
           })}
       </div>
 
-      {<AddUserModal fetchUser={fetchUser} currentCircle={currentCircle} />}
+      {
+        <AddUserModal
+          user={user}
+          setCircles={setCircles}
+          currentCircle={currentCircle}
+        />
+      }
     </div>
   );
 };

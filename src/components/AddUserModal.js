@@ -1,14 +1,19 @@
 import { useState } from "react";
-import { updateCircle } from "../services";
+import { updateCircle, listCircles } from "../services";
 
-export const AddUserModal = ({ currentCircle, fetchUser }) => {
+export const AddUserModal = ({ user, currentCircle, setCircles }) => {
   const [newUser, setNewUser] = useState("");
+
+  const fetchCircles = async () => {
+    const response = await listCircles(user.circles);
+    setCircles(response);
+  };
 
   const handleNewUser = (event) => setNewUser(event.target.value);
 
   const handleAddUser = async () => {
     await updateCircle({ circleId: currentCircle.id, userToAdd: newUser });
-    fetchUser();
+    fetchCircles();
     setNewUser("");
   };
 

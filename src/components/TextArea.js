@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
 import "../styles/TextArea.scss";
 import { updateCircle } from "../services";
+import { listCircles } from "../services";
 
-export const TextArea = ({ user, currentCircle, fetchUser }) => {
+export const TextArea = ({ user, currentCircle, setCircles }) => {
   const [textArea, setTextArea] = useState("");
+
+  const fetchCircles = async () => {
+    const response = await listCircles(user.circles);
+    setCircles(response);
+  };
 
   useEffect(() => {
     const sendMessage = async () => {
       const message = { screenName: user.screenName, message: textArea };
       const request = { circleId: currentCircle.id, message };
       await updateCircle(request);
-      fetchUser();
+      fetchCircles();
     };
 
     const handleEnter = (event) => {

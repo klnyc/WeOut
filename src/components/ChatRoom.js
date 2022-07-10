@@ -7,7 +7,7 @@ export const ChatRoom = ({
   currentCircle,
   showCircleBar,
   setShowCircleBar,
-  fetchUser,
+  setCircles,
 }) => {
   return (
     <div
@@ -16,16 +16,17 @@ export const ChatRoom = ({
       }`}
     >
       <Messages
+        user={user}
         currentCircle={currentCircle}
         setShowCircleBar={setShowCircleBar}
         showCircleBar={showCircleBar}
-        fetchUser={fetchUser}
+        setCircles={setCircles}
       />
       {currentCircle && (
         <TextArea
           user={user}
           currentCircle={currentCircle}
-          fetchUser={fetchUser}
+          setCircles={setCircles}
         />
       )}
     </div>

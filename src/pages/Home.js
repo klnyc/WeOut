@@ -44,7 +44,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
         currentCircle={currentCircle}
         showCircleBar={showCircleBar}
         setShowCircleBar={setShowCircleBar}
-        fetchUser={fetchUser}
+        setCircles={setCircles}
       />
     </div>
   );
