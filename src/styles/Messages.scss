@@ -2,4 +2,5 @@
 
 .messages--component {
   height: calc(100% - #{$textArea-height});
+  overflow-y: auto;
 }

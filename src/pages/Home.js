@@ -2,20 +2,27 @@ import { useEffect, useState } from "react";
 import { CircleBar } from "../components/CircleBar";
 import { ChatRoom } from "../components/ChatRoom";
 import { listCircles } from "../services";
+import { firestore } from "../firebase";
+import { doc, onSnapshot } from "firebase/firestore";
+import { CIRCLES } from "../utility";
 
 export const Home = ({ user, setUser, fetchUser }) => {
   const [showCircleBar, setShowCircleBar] = useState(true);
   const [circles, setCircles] = useState([]);
   const [currentCircle, setCurrentCircle] = useState();
+  const [mounted, setMounted] = useState(false);
 
+  const fetchCircles = async () => {
+    const response = await listCircles(user.circles);
+    setCircles(response);
+  };
+
+  // Refresh circles when user adds a new circle
   useEffect(() => {
-    const fetchCircles = async () => {
-      const response = await listCircles(user.circles);
-      setCircles(response);
-    };
     fetchCircles();
-  }, [user]);
+  }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Set current circle when circles are loaded or first circle is added
   useEffect(() => {
     if (!circles.length) return;
     if (!currentCircle) {
@@ -26,7 +33,27 @@ export const Home = ({ user, setUser, fetchUser }) => {
       );
       setCurrentCircle(updatedCircle);
     }
-  }, [circles, currentCircle]);
+  }, [circles]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // If data is loaded, set flag that data is loaded
+  useEffect(() => {
+    if (currentCircle) setMounted(true);
+  }, [currentCircle]);
+
+  // If data, attach listeners to all circles
+  useEffect(() => {
+    if (mounted) {
+      circles.map((circle) => {
+        const circleDoc = doc(firestore, CIRCLES, circle.id);
+        const unsubscribe = onSnapshot(circleDoc, () => {
+          fetchCircles();
+        });
+        return () => {
+          unsubscribe();
+        };
+      });
+    }
+  }, [mounted]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="home--page">

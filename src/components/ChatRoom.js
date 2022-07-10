@@ -7,7 +7,6 @@ export const ChatRoom = ({
   currentCircle,
   showCircleBar,
   setShowCircleBar,
-  setCircles,
 }) => {
   return (
     <div
@@ -16,19 +15,11 @@ export const ChatRoom = ({
       }`}
     >
       <Messages
-        user={user}
         currentCircle={currentCircle}
         setShowCircleBar={setShowCircleBar}
         showCircleBar={showCircleBar}
-        setCircles={setCircles}
       />
-      {currentCircle && (
-        <TextArea
-          user={user}
-          currentCircle={currentCircle}
-          setCircles={setCircles}
-        />
-      )}
+      {currentCircle && <TextArea user={user} currentCircle={currentCircle} />}
     </div>
   );
 };
