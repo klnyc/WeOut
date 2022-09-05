@@ -1,5 +1,5 @@
 import "../styles/CircleBar.scss";
-import { signOutUser, deleteCircle } from "../services";
+import { signOutUser } from "../services";
 import { SCREEN_NAME } from "../utility";
 import { AddCircleModal } from "./AddCircleModal";
 import { BiMessageRoundedAdd } from "../icons";
@@ -18,11 +18,6 @@ export const CircleBar = ({
     window.sessionStorage.removeItem(SCREEN_NAME);
   };
 
-  const handleDeleteCircle = async (circleId) => {
-    await deleteCircle(circleId, user.screenName);
-    fetchUser();
-  };
-
   return (
     <div
       className={`pt-0 offcanvas offcanvas-start circleBar--panel ${
@@ -39,7 +34,6 @@ export const CircleBar = ({
               onClick={() => setCurrentCircle(circle)}
             >
               {circle.name}
-              <div onClick={() => handleDeleteCircle(circle.id)}>|x|</div>
             </div>
           );
         })}

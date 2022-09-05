@@ -40,7 +40,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
     if (currentCircle) setLoaded(true);
   }, [currentCircle]);
 
-  // If data is loaded, attach listeners to all circles
+  // If data is loaded, attach listeners to all circles to display live messages
   useEffect(() => {
     if (loaded) {
       circles.map((circle) => {
@@ -72,6 +72,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
         showCircleBar={showCircleBar}
         setShowCircleBar={setShowCircleBar}
         setCircles={setCircles}
+        fetchUser={fetchUser}
       />
     </div>
   );

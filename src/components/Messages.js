@@ -1,12 +1,20 @@
 import "../styles/Messages.scss";
 import { AddUserModal } from "./AddUserModal";
 import { HiUserAdd, HiMenu, RiChatDeleteLine } from "../icons";
+import { deleteCircle } from "../services";
 
 export const Messages = ({
   currentCircle,
   setShowCircleBar,
   showCircleBar,
+  fetchUser,
+  user,
 }) => {
+  const handleDeleteCircle = async (circleId) => {
+    await deleteCircle(circleId, user.screenName);
+    fetchUser();
+  };
+
   const renderIcons = () => {
     return (
       <div className="col-4 text-end">
@@ -18,7 +26,10 @@ export const Messages = ({
         >
           <HiUserAdd />
         </button>
-        <RiChatDeleteLine className="mx-2" />
+        <RiChatDeleteLine
+          className="mx-2 icon"
+          onClick={() => handleDeleteCircle(currentCircle.id)}
+        />
       </div>
     );
   };
@@ -27,7 +38,7 @@ export const Messages = ({
     return (
       <div className="row pb-3">
         <div className="col-4" onClick={() => setShowCircleBar(!showCircleBar)}>
-          <HiMenu className="messages--button-circleBar-toggle" />
+          <HiMenu className="icon" />
         </div>
         <div className="col-4 text-center">
           {currentCircle && currentCircle.name}
