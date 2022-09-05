@@ -2,6 +2,7 @@ import "../styles/CircleBar.scss";
 import { signOutUser, deleteCircle } from "../services";
 import { SCREEN_NAME } from "../utility";
 import { AddCircleModal } from "./AddCircleModal";
+import { BiMessageRoundedAdd } from "../icons";
 
 export const CircleBar = ({
   user,
@@ -24,11 +25,11 @@ export const CircleBar = ({
 
   return (
     <div
-      className={`offcanvas offcanvas-start circleBar--panel ${
+      className={`pt-0 offcanvas offcanvas-start circleBar--panel ${
         showCircleBar && "show"
       }`}
     >
-      <div>{user.screenName}</div>
+      <div className="text-center fw-bold pb-3">{user.screenName}</div>
       <div>
         {circles.map((circle) => {
           return (
@@ -47,8 +48,9 @@ export const CircleBar = ({
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#addCircleModal"
+            className="border-0 icon fs-4"
           >
-            +
+            <BiMessageRoundedAdd />
           </button>
         </div>
         <button type="button" className="btn btn-light" onClick={handleSignOut}>

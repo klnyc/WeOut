@@ -3,4 +3,9 @@
 .messages--component {
   height: calc(100% - #{$textArea-height});
   overflow-y: auto;
+  padding: 0 20px;
+}
+
+.messages--button-circleBar-toggle {
+  cursor: pointer;
 }

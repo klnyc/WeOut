@@ -10,7 +10,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
   const [showCircleBar, setShowCircleBar] = useState(true);
   const [circles, setCircles] = useState([]);
   const [currentCircle, setCurrentCircle] = useState();
-  const [mounted, setMounted] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   const fetchCircles = async () => {
     const response = await listCircles(user.circles);
@@ -37,12 +37,12 @@ export const Home = ({ user, setUser, fetchUser }) => {
 
   // If data is loaded, set flag that data is loaded
   useEffect(() => {
-    if (currentCircle) setMounted(true);
+    if (currentCircle) setLoaded(true);
   }, [currentCircle]);
 
-  // If data, attach listeners to all circles
+  // If data is loaded, attach listeners to all circles
   useEffect(() => {
-    if (mounted) {
+    if (loaded) {
       circles.map((circle) => {
         const circleDoc = doc(firestore, CIRCLES, circle.id);
         const unsubscribe = onSnapshot(circleDoc, () => {
@@ -53,7 +53,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
         };
       });
     }
-  }, [mounted]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [loaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="home--page">
