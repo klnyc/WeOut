@@ -83,15 +83,14 @@ export const Messages = ({
           })}
       </div>
 
+      {<SignOutModal setUser={setUser} />}
       {<AddUserModal currentCircle={currentCircle} />}
       {
         <DeleteCircleModal
           fetchUser={fetchUser}
-          user={user}
           currentCircle={currentCircle}
         />
       }
-      {<SignOutModal setUser={setUser} />}
     </div>
   );
 };

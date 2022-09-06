@@ -30,9 +30,10 @@ export const Home = ({ user, setUser, fetchUser }) => {
     if (!currentCircle) {
       setCurrentCircle(circles[0]);
     } else {
-      const updatedCircle = circles.find(
-        (circle) => circle.id === currentCircle.id
-      );
+      const updatedCircle = circles.find((circle) => {
+        if (!circle) return false;
+        return circle.id === currentCircle.id;
+      });
       setCurrentCircle(updatedCircle);
     }
   }, [circles]); // eslint-disable-line react-hooks/exhaustive-deps

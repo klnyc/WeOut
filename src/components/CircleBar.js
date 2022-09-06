@@ -20,6 +20,7 @@ export const CircleBar = ({
       </div>
       <div>
         {circles.map((circle) => {
+          if (!circle) return null;
           return (
             <div
               key={circle.id}

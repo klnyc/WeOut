@@ -1,8 +1,8 @@
 import { deleteCircle } from "../services";
 
-export const DeleteCircleModal = ({ fetchUser, user, currentCircle }) => {
+export const DeleteCircleModal = ({ fetchUser, currentCircle }) => {
   const handleDeleteCircle = async (circleId) => {
-    await deleteCircle(circleId, user.screenName);
+    await deleteCircle(circleId);
     fetchUser();
   };
 
