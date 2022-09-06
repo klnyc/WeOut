@@ -19,11 +19,13 @@ export const Home = ({ user, setUser, fetchUser }) => {
 
   // Refresh circles when user adds a new circle
   useEffect(() => {
+    console.log("fetching circles");
     fetchCircles();
   }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Set current circle when circles are loaded or first circle is added
   useEffect(() => {
+    console.log("set current circle");
     if (!circles.length) return;
     if (!currentCircle) {
       setCurrentCircle(circles[0]);
@@ -37,14 +39,16 @@ export const Home = ({ user, setUser, fetchUser }) => {
 
   // If data is loaded, set flag that data is loaded
   useEffect(() => {
-    if (currentCircle) setLoaded(true);
-  }, [currentCircle]);
+    console.log("set load state");
+    if (currentCircle && !loaded) setLoaded(true);
+  }, [currentCircle, loaded]);
 
   // If data is loaded, attach listeners to all circles to display live messages
   useEffect(() => {
-    if (loaded) {
-      circles.map((circle) => {
-        const circleDoc = doc(firestore, CIRCLES, circle.id);
+    console.log("add listeners");
+    if (loaded && user.circles.length) {
+      user.circles.map((circle) => {
+        const circleDoc = doc(firestore, CIRCLES, circle);
         const unsubscribe = onSnapshot(circleDoc, () => {
           fetchCircles();
         });
@@ -53,7 +57,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
         };
       });
     }
-  }, [loaded]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [loaded, user.circles]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="home--page">

@@ -39,8 +39,6 @@ export const TextArea = ({ user, currentCircle }) => {
       value={textArea}
       onChange={handleTextAreaChange}
       placeholder="Press enter to send..."
-    >
-      <button>Send</button>
-    </textarea>
+    ></textarea>
   );
 };

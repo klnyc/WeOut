@@ -20,7 +20,7 @@ export const CircleBar = ({
 
   return (
     <div
-      className={`pt-0 offcanvas offcanvas-start circleBar--panel ${
+      className={`pt-0 overflow-auto offcanvas offcanvas-start circleBar--panel ${
         showCircleBar && "show"
       }`}
     >
