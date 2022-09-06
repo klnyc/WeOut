@@ -32,6 +32,7 @@ $textArea-height: 80px;
   background-color: transparent;
   cursor: pointer;
   color: $color-black;
+  border: none;
 
   &:hover {
     color: $color-primary;

@@ -1,8 +1,9 @@
 import "../styles/Messages.scss";
 import { AddUserModal } from "./AddUserModal";
-import { HiUserAdd, HiMenu, RiChatDeleteLine } from "../icons";
+import { HiUserAdd, HiMenu, RiChatDeleteLine, BiExit } from "../icons";
 import { useEffect } from "react";
 import { DeleteCircleModal } from "./DeleteCircleModal";
+import { SignOutModal } from "./SignOutModal";
 
 export const Messages = ({
   currentCircle,
@@ -10,6 +11,7 @@ export const Messages = ({
   showCircleBar,
   fetchUser,
   user,
+  setUser,
 }) => {
   useEffect(() => {
     const element = document.getElementById("messages--component");
@@ -23,7 +25,7 @@ export const Messages = ({
           type="button"
           data-bs-toggle="modal"
           data-bs-target="#addUserModal"
-          className="mx-2 border-0 icon"
+          className="mx-2 icon"
         >
           <HiUserAdd />
         </button>
@@ -31,9 +33,17 @@ export const Messages = ({
           type="button"
           data-bs-toggle="modal"
           data-bs-target="#deleteCircleModal"
-          className="mx-2 border-0 icon"
+          className="mx-2 icon"
         >
           <RiChatDeleteLine />
+        </button>
+        <button
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#signOutModal"
+          className="mx-2 icon"
+        >
+          <BiExit />
         </button>
       </div>
     );
@@ -41,7 +51,7 @@ export const Messages = ({
 
   const renderHeader = () => {
     return (
-      <div className="row pb-3">
+      <div className="row py-2 fs-6">
         <div className="col-4" onClick={() => setShowCircleBar(!showCircleBar)}>
           <HiMenu className="icon" />
         </div>
@@ -81,6 +91,7 @@ export const Messages = ({
           currentCircle={currentCircle}
         />
       }
+      {<SignOutModal setUser={setUser} />}
     </div>
   );
 };

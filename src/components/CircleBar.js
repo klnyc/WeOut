@@ -1,6 +1,4 @@
 import "../styles/CircleBar.scss";
-import { signOutUser } from "../services";
-import { SCREEN_NAME } from "../utility";
 import { AddCircleModal } from "./AddCircleModal";
 import { BiMessageRoundedAdd } from "../icons";
 
@@ -9,22 +7,17 @@ export const CircleBar = ({
   circles,
   setCurrentCircle,
   showCircleBar,
-  setUser,
   fetchUser,
 }) => {
-  const handleSignOut = async () => {
-    await signOutUser();
-    setUser();
-    window.sessionStorage.removeItem(SCREEN_NAME);
-  };
-
   return (
     <div
       className={`pt-0 overflow-auto offcanvas offcanvas-start circleBar--panel ${
         showCircleBar && "show"
       }`}
     >
-      <div className="text-center fw-bold pb-3">{user.screenName}</div>
+      <div className="text-center fw-bold pt-2 pb-3 fs-6">
+        {user.screenName}
+      </div>
       <div>
         {circles.map((circle) => {
           return (
@@ -42,14 +35,11 @@ export const CircleBar = ({
             type="button"
             data-bs-toggle="modal"
             data-bs-target="#addCircleModal"
-            className="border-0 icon fs-4"
+            className="icon fs-4"
           >
             <BiMessageRoundedAdd />
           </button>
         </div>
-        <button type="button" className="btn btn-light" onClick={handleSignOut}>
-          Sign out
-        </button>
 
         {<AddCircleModal user={user} fetchUser={fetchUser} />}
       </div>

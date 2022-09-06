@@ -67,7 +67,6 @@ export const Home = ({ user, setUser, fetchUser }) => {
         setCurrentCircle={setCurrentCircle}
         showCircleBar={showCircleBar}
         setShowCircleBar={setShowCircleBar}
-        setUser={setUser}
         fetchUser={fetchUser}
       />
       <ChatRoom
@@ -77,6 +76,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
         setShowCircleBar={setShowCircleBar}
         setCircles={setCircles}
         fetchUser={fetchUser}
+        setUser={setUser}
       />
     </div>
   );
