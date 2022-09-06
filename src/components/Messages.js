@@ -51,7 +51,7 @@ export const Messages = ({
 
   const renderHeader = () => {
     return (
-      <div className="row py-2 fs-6">
+      <div className="row py-2 fs-6 sticky-top messages--header">
         <div className="col-4" onClick={() => setShowCircleBar(!showCircleBar)}>
           <HiMenu className="icon" />
         </div>
