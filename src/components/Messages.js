@@ -1,8 +1,8 @@
 import "../styles/Messages.scss";
 import { AddUserModal } from "./AddUserModal";
 import { HiUserAdd, HiMenu, RiChatDeleteLine } from "../icons";
-import { deleteCircle } from "../services";
 import { useEffect } from "react";
+import { DeleteCircleModal } from "./DeleteCircleModal";
 
 export const Messages = ({
   currentCircle,
@@ -16,11 +16,6 @@ export const Messages = ({
     element.scrollTop = element.scrollHeight;
   }, [currentCircle]);
 
-  const handleDeleteCircle = async (circleId) => {
-    await deleteCircle(circleId, user.screenName);
-    fetchUser();
-  };
-
   const renderIcons = () => {
     return (
       <div className="col-4 text-end">
@@ -32,10 +27,14 @@ export const Messages = ({
         >
           <HiUserAdd />
         </button>
-        <RiChatDeleteLine
-          className="mx-2 icon"
-          onClick={() => handleDeleteCircle(currentCircle.id)}
-        />
+        <button
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#deleteCircleModal"
+          className="mx-2 border-0 icon"
+        >
+          <RiChatDeleteLine />
+        </button>
       </div>
     );
   };
@@ -75,6 +74,13 @@ export const Messages = ({
       </div>
 
       {<AddUserModal currentCircle={currentCircle} />}
+      {
+        <DeleteCircleModal
+          fetchUser={fetchUser}
+          user={user}
+          currentCircle={currentCircle}
+        />
+      }
     </div>
   );
 };
