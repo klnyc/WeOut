@@ -2,6 +2,7 @@ import "../styles/Messages.scss";
 import { AddUserModal } from "./AddUserModal";
 import { HiUserAdd, HiMenu, RiChatDeleteLine } from "../icons";
 import { deleteCircle } from "../services";
+import { useEffect } from "react";
 
 export const Messages = ({
   currentCircle,
@@ -10,6 +11,11 @@ export const Messages = ({
   fetchUser,
   user,
 }) => {
+  useEffect(() => {
+    const element = document.getElementById("messages--component");
+    element.scrollTop = element.scrollHeight;
+  }, [currentCircle]);
+
   const handleDeleteCircle = async (circleId) => {
     await deleteCircle(circleId, user.screenName);
     fetchUser();
@@ -49,13 +55,19 @@ export const Messages = ({
   };
 
   return (
-    <div className="col messages--component">
+    <div id="messages--component" className="col">
       {renderHeader()}
       <div>
         {currentCircle &&
           currentCircle.messages.map((message, index) => {
+            const isUserMessage = message.screenName === user.screenName;
             return (
-              <div key={index}>
+              <div
+                key={index}
+                className={`messages--message ${
+                  isUserMessage ? "user" : "member"
+                }`}
+              >
                 {message.screenName}: {message.message}
               </div>
             );

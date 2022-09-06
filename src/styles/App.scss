@@ -1,5 +1,7 @@
 $color-primary: navy;
-$color-secondary: #f3f3f3;
+$color-secondary: aliceblue;
+$color-white: white;
+$color-light-gray: #f3f3f3;
 $color-black: #202020;
 $color-gray: darkgray;
 
@@ -9,7 +11,7 @@ $textArea-height: 80px;
 
 .app {
   color: $color-primary;
-  background-color: $color-secondary;
+  background-color: $color-light-gray;
   min-height: 100vh;
   font-size: 13px;
 }
@@ -29,4 +31,9 @@ $textArea-height: 80px;
 .icon {
   background-color: transparent;
   cursor: pointer;
+  color: $color-black;
+
+  &:hover {
+    color: $color-primary;
+  }
 }
