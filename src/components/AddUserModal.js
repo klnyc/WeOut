@@ -23,6 +23,11 @@ export const AddUserModal = ({ currentCircle }) => {
               value={newUser}
               onChange={handleNewUser}
             />
+            <div>
+              <div className="pt-3 fw-bold">Current members:</div>
+              {currentCircle &&
+                currentCircle.users.map((user) => <div key={user}>{user}</div>)}
+            </div>
           </div>
           <div className="modal-footer">
             <button

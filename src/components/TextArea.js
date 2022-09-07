@@ -7,8 +7,15 @@ export const TextArea = ({ user, currentCircle }) => {
 
   useEffect(() => {
     const sendMessage = async () => {
-      const message = { screenName: user.screenName, message: textArea };
-      const request = { circleId: currentCircle.id, message };
+      const message = {
+        screenName: user.screenName,
+        message: textArea,
+        timestamp: new Date().toLocaleString(),
+      };
+      const request = {
+        circleId: currentCircle.id,
+        message,
+      };
       await updateCircle(request);
     };
 
