@@ -55,7 +55,7 @@ export const Messages = ({
         <div className="col-4" onClick={() => setShowCircleBar(!showCircleBar)}>
           <HiMenu className="icon" />
         </div>
-        <div className="col-4 text-center">
+        <div className="col-4 text-center fw-bold">
           {currentCircle && currentCircle.name}
         </div>
         {renderIcons()}
