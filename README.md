@@ -1,7 +1,7 @@
 # WeOut
 
 WeOut is an instant messaging application that allows users to create circles 
-and chat with members within their circles, identified by unique screen names.
+and chat with members identified by unique screen names.
 
 ## :gear: Functionality
 * Login or sign up with your screen name
