@@ -1,11 +1,9 @@
 @import "./App.scss";
 
-.textArea--component {
-  border-top: 1px solid $color-gray;
+textarea {
   height: $textArea-height;
   resize: none;
+  outline: none;
 
-  &:focus {
-    border-top: 1px solid $color-gray;
-  }
+
 }

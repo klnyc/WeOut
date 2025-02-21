@@ -42,7 +42,7 @@ export const TextArea = ({ user, currentCircle }) => {
 
   return (
     <textarea
-      className="col form-control textArea--component"
+      className="col form-control no-focus textArea--component border-0 rounded-0"
       value={textArea}
       onChange={handleTextAreaChange}
       placeholder="Press enter to send..."

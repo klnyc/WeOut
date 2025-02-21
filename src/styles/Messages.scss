@@ -4,6 +4,7 @@
   height: calc(100% - #{$textArea-height});
   overflow-y: auto;
   padding: 0 20px;
+  border-bottom: 1px solid $color-gray;
 }
 
 .messages--message {

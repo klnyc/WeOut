@@ -7,6 +7,7 @@
   padding: $spacing-primary;
   transition: all 0.3s ease;
   visibility: visible;
+  background-color: linen;
 }
 
 .circleBar--circle {
@@ -20,4 +21,5 @@
   justify-content: center;
   text-align: center;
   background-color: $color-secondary;
+  cursor: pointer;
 }
