@@ -21,6 +21,12 @@ $textArea-height: 80px;
   height: 100vh;
 }
 
+.login--page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn {
   &:focus {
     box-shadow: none;

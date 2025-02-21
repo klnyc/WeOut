@@ -36,6 +36,7 @@ export const Login = ({ setUser }) => {
   return (
     <div className="login--page">
       <form className="login--form_panel" onSubmit={handleLogin}>
+        <div className="text-center fs-4 fw-semibold">~ WeOut ~</div>
         <div className="form-group mb-3">
           <label>Screen name</label>
           <input

@@ -2,9 +2,10 @@
 
 .login--form_panel {
   width: 360px;
-  height: 100%;
-  border-right: 1px solid $color-gray;
+  height: 360px;
+  border: 1px solid $color-gray;
   padding: $spacing-primary;
+  background-color: $color-secondary;
 }
 
 .login--error {
@@ -14,9 +15,12 @@
 }
 
 .form-control {
+  border: 1px solid $color-gray;
+
   &:focus {
     box-shadow: none;
-    border-color: transparent;
+    border-color: $color-gray;
+    outline: none;
   }
 }
 
