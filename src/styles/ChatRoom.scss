@@ -1,4 +1,4 @@
-@import "./App.scss";
+@use './variables' as *;
 
 .chatRoom--component {
   transition: all 0.3s ease;

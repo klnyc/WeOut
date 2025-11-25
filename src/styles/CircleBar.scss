@@ -1,4 +1,4 @@
-@import "./App.scss";
+@use './variables' as *;
 
 .circleBar--panel {
   width: $circleBar-width;

@@ -1,9 +1,7 @@
-@import "./App.scss";
+@use './variables' as *;
 
 textarea {
   height: $textArea-height;
   resize: none;
   outline: none;
-
-
 }

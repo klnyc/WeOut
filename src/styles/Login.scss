@@ -1,4 +1,4 @@
-@import "./App.scss";
+@use './variables' as *;
 
 .login--form_panel {
   width: 360px;

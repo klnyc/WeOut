@@ -11,18 +11,10 @@ and chat with members identified by unique screen names.
 
 ## :hammer_and_pick: Technology Stack
 
-Front End
 * React
 * Sass
 * Bootstrap
-* HTML
-
-Back End
 * Firebase
-
-Other
-* Node.js
-* Git
 
 ## :rocket: Deployment
 https://weout.web.app/

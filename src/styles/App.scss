@@ -1,13 +1,4 @@
-$color-primary: navy;
-$color-secondary: aliceblue;
-$color-white: white;
-$color-light-gray: #f3f3f3;
-$color-black: #202020;
-$color-gray: darkgray;
-
-$spacing-primary: 20px;
-$circleBar-width: 160px;
-$textArea-height: 80px;
+@use './variables' as *;
 
 .app {
   color: $color-primary;
@@ -16,12 +7,12 @@ $textArea-height: 80px;
   font-size: 13px;
 }
 
-.login--page,
-.home--page {
+.login-page,
+.home-page {
   height: 100vh;
 }
 
-.login--page {
+.login-page {
   display: flex;
   justify-content: center;
   align-items: center;
