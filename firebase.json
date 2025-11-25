@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "build",
+    "public": "dist",
     "target": "weout",
     "ignore": [
       "firebase.json",
