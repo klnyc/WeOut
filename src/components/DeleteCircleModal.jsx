@@ -7,7 +7,7 @@ export const DeleteCircleModal = ({ fetchUser, currentCircle }) => {
   };
 
   return (
-    <div className="modal fade" id="deleteCircleModal">
+    <div className="modal fade" id="delete-circle-modal">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-body">

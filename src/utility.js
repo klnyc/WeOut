@@ -1,4 +1,4 @@
-// Collections
+// Firebase Collections
 export const USERS = "users";
 export const CIRCLES = "circles";
 

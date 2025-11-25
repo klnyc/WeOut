@@ -13,7 +13,7 @@ export const AddCircleModal = ({ user, fetchUser }) => {
   };
 
   return (
-    <div className="modal fade" id="addCircleModal">
+    <div className="modal fade" id="add-circle-modal">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-body">

@@ -9,10 +9,10 @@ export const SignOutModal = ({ setUser }) => {
   };
 
   return (
-    <div className="modal fade" id="signOutModal">
+    <div className="modal fade" id="log-out-modal">
       <div className="modal-dialog">
         <div className="modal-content">
-          <div className="modal-body">Sign out?</div>
+          <div className="modal-body">Log out?</div>
           <div className="modal-footer">
             <button
               type="button"
@@ -27,7 +27,7 @@ export const SignOutModal = ({ setUser }) => {
               data-bs-dismiss="modal"
               onClick={handleSignOut}
             >
-              Sign out
+              Log out
             </button>
           </div>
         </div>

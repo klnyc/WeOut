@@ -11,7 +11,7 @@ export const CircleBar = ({
 }) => {
   return (
     <div
-      className={`pt-0 overflow-auto offcanvas offcanvas-start circleBar--panel ${
+      className={`pt-0 overflow-auto offcanvas offcanvas-start circle-bar-panel ${
         showCircleBar && "show"
       }`}
     >
@@ -24,18 +24,18 @@ export const CircleBar = ({
           return (
             <div
               key={circle.id}
-              className="circleBar--circle"
+              className="circle-bar-circle"
               onClick={() => setCurrentCircle(circle)}
             >
               {circle.name}
             </div>
           );
         })}
-        <div className="circleBar--circle">
+        <div className="circle-bar-circle">
           <button
             type="button"
             data-bs-toggle="modal"
-            data-bs-target="#addCircleModal"
+            data-bs-target="#add-circle-modal"
             className="icon fs-4"
           >
             <BiMessageRoundedAdd />

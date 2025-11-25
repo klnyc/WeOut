@@ -34,8 +34,8 @@ export const Login = ({ setUser }) => {
   };
 
   return (
-    <div className="login--page">
-      <form className="login--form_panel" onSubmit={handleLogin}>
+    <div id="login-page">
+      <form className="login-form-panel" onSubmit={handleLogin}>
         <div className="text-center fs-4 fw-semibold">~ WeOut ~</div>
         <div className="form-group mb-3">
           <label>Screen name</label>
@@ -70,7 +70,7 @@ export const Login = ({ setUser }) => {
             {loginState ? "Create account" : "Login"}
           </button>
         </div>
-        {error && <div className="login--error">{error}</div>}
+        {error && <div className="login-error">{error}</div>}
       </form>
     </div>
   );

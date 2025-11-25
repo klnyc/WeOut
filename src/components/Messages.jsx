@@ -14,7 +14,7 @@ export const Messages = ({
   setUser,
 }) => {
   useEffect(() => {
-    const element = document.getElementById("messages--component");
+    const element = document.getElementById("message-window");
     element.scrollTop = element.scrollHeight;
   }, [currentCircle]);
 
@@ -24,7 +24,7 @@ export const Messages = ({
         <button
           type="button"
           data-bs-toggle="modal"
-          data-bs-target="#addUserModal"
+          data-bs-target="#add-user-modal"
           className="mx-2 icon"
         >
           <HiUserAdd />
@@ -32,7 +32,7 @@ export const Messages = ({
         <button
           type="button"
           data-bs-toggle="modal"
-          data-bs-target="#deleteCircleModal"
+          data-bs-target="#delete-circle-modal"
           className="mx-2 icon"
         >
           <RiChatDeleteLine />
@@ -40,7 +40,7 @@ export const Messages = ({
         <button
           type="button"
           data-bs-toggle="modal"
-          data-bs-target="#signOutModal"
+          data-bs-target="#log-out-modal"
           className="mx-2 icon"
         >
           <BiExit />
@@ -51,7 +51,7 @@ export const Messages = ({
 
   const renderHeader = () => {
     return (
-      <div className="row py-2 fs-6 sticky-top messages--header">
+      <div className="row py-2 fs-6 sticky-top message-window-header">
         <div className="col-4" onClick={() => setShowCircleBar(!showCircleBar)}>
           <HiMenu className="icon" />
         </div>
@@ -64,7 +64,7 @@ export const Messages = ({
   };
 
   return (
-    <div id="messages--component" className="col">
+    <div id="message-window" className="col">
       {renderHeader()}
       <div>
         {currentCircle &&
@@ -73,7 +73,7 @@ export const Messages = ({
             return (
               <div
                 key={index}
-                className={`messages--message ${
+                className={`message-bubble ${
                   isUserMessage ? "user" : "member"
                 }`}
               >

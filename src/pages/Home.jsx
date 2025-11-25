@@ -46,7 +46,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
 
   // If data is loaded, attach listeners to all circles to display live messages
   useEffect(() => {
-    console.log("add listeners");
+    console.log("add message listeners");
     if (loaded && user.circles.length) {
       user.circles.map((circle) => {
         const circleDoc = doc(firestore, CIRCLES, circle);
@@ -61,7 +61,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
   }, [loaded, user.circles]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="home--page">
+    <div id="home-page">
       <CircleBar
         user={user}
         circles={circles}

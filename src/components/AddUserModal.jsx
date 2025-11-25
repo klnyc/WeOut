@@ -12,7 +12,7 @@ export const AddUserModal = ({ currentCircle }) => {
   };
 
   return (
-    <div className="modal fade" id="addUserModal">
+    <div className="modal fade" id="add-user-modal">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-body">

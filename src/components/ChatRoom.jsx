@@ -12,7 +12,7 @@ export const ChatRoom = ({
 }) => {
   return (
     <div
-      className={`row row-cols-1 chatRoom--component ${
+      className={`row row-cols-1 chat-room ${
         showCircleBar && "shrink"
       }`}
     >

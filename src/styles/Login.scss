@@ -1,15 +1,16 @@
-@use './variables' as *;
+@use "./variables" as *;
 
-.login--form_panel {
+.login-form-panel {
   width: 360px;
   height: 360px;
   border: 1px solid $color-gray;
   border-radius: 12px;
   padding: $spacing-primary;
   background-color: $color-secondary;
+  margin: 0 auto;
 }
 
-.login--error {
+.login-error {
   color: red;
   text-align: center;
   padding: $spacing-primary;
