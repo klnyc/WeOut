@@ -1,18 +1,18 @@
-import { deleteCircle } from "../services";
+import { signOutUser } from "../services.js";
+import { SCREEN_NAME } from "../utility.js";
 
-export const DeleteCircleModal = ({ fetchUser, currentCircle }) => {
-  const handleDeleteCircle = async (circleId) => {
-    await deleteCircle(circleId);
-    fetchUser();
+export const SignOutModal = ({ setUser }) => {
+  const handleSignOut = async () => {
+    await signOutUser();
+    setUser();
+    window.sessionStorage.removeItem(SCREEN_NAME);
   };
 
   return (
-    <div className="modal fade" id="deleteCircleModal">
+    <div className="modal fade" id="signOutModal">
       <div className="modal-dialog">
         <div className="modal-content">
-          <div className="modal-body">
-            This circle and all of its messages will be deleted forever.
-          </div>
+          <div className="modal-body">Sign out?</div>
           <div className="modal-footer">
             <button
               type="button"
@@ -25,9 +25,9 @@ export const DeleteCircleModal = ({ fetchUser, currentCircle }) => {
               type="button"
               className="btn btn-primary"
               data-bs-dismiss="modal"
-              onClick={() => handleDeleteCircle(currentCircle.id)}
+              onClick={handleSignOut}
             >
-              Delete
+              Sign out
             </button>
           </div>
         </div>

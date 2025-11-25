@@ -1,9 +1,9 @@
 import "../styles/Messages.scss";
-import { AddUserModal } from "./AddUserModal";
-import { HiUserAdd, HiMenu, RiChatDeleteLine, BiExit } from "../icons";
+import { AddUserModal } from "./AddUserModal.jsx";
+import { HiUserAdd, HiMenu, RiChatDeleteLine, BiExit } from "../icons.js";
 import { useEffect } from "react";
-import { DeleteCircleModal } from "./DeleteCircleModal";
-import { SignOutModal } from "./SignOutModal";
+import { DeleteCircleModal } from "./DeleteCircleModal.jsx";
+import { SignOutModal } from "./SignOutModal.jsx";
 
 export const Messages = ({
   currentCircle,

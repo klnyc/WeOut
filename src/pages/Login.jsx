@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../styles/App.scss";
 import "../styles/Login.scss";
-import { authenticateUser, createUser, getUser } from "../services";
-import { SCREEN_NAME } from "../utility";
+import { authenticateUser, createUser, getUser } from "../services.js";
+import { SCREEN_NAME } from "../utility.js";
 
 export const Login = ({ setUser }) => {
   const [credentials, setCredentials] = useState({

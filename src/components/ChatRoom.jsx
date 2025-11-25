@@ -1,6 +1,6 @@
 import "../styles/ChatRoom.scss";
-import { Messages } from "./Messages";
-import { TextArea } from "./TextArea";
+import { Messages } from "./Messages.jsx";
+import { TextArea } from "./TextArea.jsx";
 
 export const ChatRoom = ({
   user,

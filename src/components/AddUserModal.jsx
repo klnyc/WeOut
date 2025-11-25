@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateCircle } from "../services";
+import { updateCircle } from "../services.js";
 
 export const AddUserModal = ({ currentCircle }) => {
   const [newUser, setNewUser] = useState("");

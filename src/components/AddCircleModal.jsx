@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createCircle } from "../services";
+import { createCircle } from "../services.js";
 
 export const AddCircleModal = ({ user, fetchUser }) => {
   const [circleName, setCircleName] = useState("");

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./styles/App.scss";
-import { Login } from "./pages/Login";
-import { Home } from "./pages/Home";
+import { Login } from "./pages/Login.jsx";
+import { Home } from "./pages/Home.jsx";
 import { getUser } from "./services";
 import { SCREEN_NAME } from "./utility";
 

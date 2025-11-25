@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/TextArea.scss";
-import { updateCircle } from "../services";
+import { updateCircle } from "../services.js";
 
 export const TextArea = ({ user, currentCircle }) => {
   const [textArea, setTextArea] = useState("");

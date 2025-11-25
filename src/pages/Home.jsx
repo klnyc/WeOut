@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { CircleBar } from "../components/CircleBar";
-import { ChatRoom } from "../components/ChatRoom";
+import { CircleBar } from "../components/CircleBar.jsx";
+import { ChatRoom } from "../components/ChatRoom.jsx";
 import { listCircles } from "../services";
 import { firestore } from "../firebase";
 import { doc, onSnapshot } from "firebase/firestore";

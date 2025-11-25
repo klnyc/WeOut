@@ -1,6 +1,6 @@
 import "../styles/CircleBar.scss";
-import { AddCircleModal } from "./AddCircleModal";
-import { BiMessageRoundedAdd } from "../icons";
+import { AddCircleModal } from "./AddCircleModal.jsx";
+import { BiMessageRoundedAdd } from "../icons.js";
 
 export const CircleBar = ({
   user,
