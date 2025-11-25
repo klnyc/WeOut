@@ -1,4 +1,4 @@
-@use './variables' as *;
+@use "./variables" as *;
 
 .side-bar-panel {
   width: $side-bar-width;
@@ -10,16 +10,16 @@
   background-color: $color-secondary;
 }
 
-.side-bar-chat {
-  border: 1px solid $color-black;
-  height: 120px;
-  width: 120px;
-  border-radius: 50%;
-  margin-bottom: $spacing-primary;
+#side-bar-chats {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: floralwhite;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.side-bar-chat-name {
   cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
 }

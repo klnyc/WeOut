@@ -1,9 +1,16 @@
 import "../styles/Messages.scss";
 import { AddUserModal } from "./AddUserModal.jsx";
-import { HiUserAdd, HiMenu, RiChatDeleteLine, BiExit } from "../icons.js";
+import {
+  HiUserAdd,
+  HiMenu,
+  RiChatDeleteLine,
+  BiExit,
+  BiMessageRoundedAdd,
+} from "../icons.js";
 import { useEffect } from "react";
 import { DeleteChatModal } from "./DeleteChatModal.jsx";
 import { SignOutModal } from "./SignOutModal.jsx";
+import { AddChatModal } from "./AddChatModal.jsx";
 
 export const Messages = ({
   currentChat,
@@ -19,13 +26,23 @@ export const Messages = ({
   }, [currentChat]);
 
   const renderIcons = () => {
+    const headerIconClass = "mx-2 icon";
+
     return (
       <div className="col-4 text-end">
         <button
           type="button"
           data-bs-toggle="modal"
+          data-bs-target="#add-chat-modal"
+          className={headerIconClass}
+        >
+          <BiMessageRoundedAdd />
+        </button>
+        <button
+          type="button"
+          data-bs-toggle="modal"
           data-bs-target="#add-user-modal"
-          className="mx-2 icon"
+          className={headerIconClass}
         >
           <HiUserAdd />
         </button>
@@ -33,7 +50,7 @@ export const Messages = ({
           type="button"
           data-bs-toggle="modal"
           data-bs-target="#delete-chat-modal"
-          className="mx-2 icon"
+          className={headerIconClass}
         >
           <RiChatDeleteLine />
         </button>
@@ -41,7 +58,7 @@ export const Messages = ({
           type="button"
           data-bs-toggle="modal"
           data-bs-target="#log-out-modal"
-          className="mx-2 icon"
+          className={headerIconClass}
         >
           <BiExit />
         </button>
@@ -86,14 +103,10 @@ export const Messages = ({
           })}
       </div>
 
-      {<SignOutModal setUser={setUser} />}
+      {<AddChatModal user={user} fetchUser={fetchUser} />}
       {<AddUserModal currentChat={currentChat} />}
-      {
-        <DeleteChatModal
-          fetchUser={fetchUser}
-          currentChat={currentChat}
-        />
-      }
+      {<SignOutModal setUser={setUser} />}
+      {<DeleteChatModal fetchUser={fetchUser} currentChat={currentChat} />}
     </div>
   );
 };

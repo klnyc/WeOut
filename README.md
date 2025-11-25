@@ -18,3 +18,5 @@ WeOut is an instant messaging application that allows users to create chatrooms 
 
 ## :rocket: Deployment
 https://weout.web.app/
+
+`npm run build && firebase deploy`
