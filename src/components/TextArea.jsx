@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "../styles/TextArea.scss";
-import { updateCircle } from "../services.js";
+import { updateChat } from "../services.js";
 
-export const TextArea = ({ user, currentCircle }) => {
+export const TextArea = ({ user, currentChat }) => {
   const [textArea, setTextArea] = useState("");
 
   useEffect(() => {
@@ -13,10 +13,10 @@ export const TextArea = ({ user, currentCircle }) => {
         timestamp: new Date().toLocaleString(),
       };
       const request = {
-        circleId: currentCircle.id,
+        chatId: currentChat.id,
         message,
       };
-      await updateCircle(request);
+      await updateChat(request);
     };
 
     const handleEnter = (event) => {

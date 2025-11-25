@@ -1,19 +1,19 @@
 # WeOut
 
-WeOut is an instant messaging application that allows users to create circles 
-and chat with members identified by unique screen names.
+WeOut is an instant messaging application that allows users to create chatrooms to message friends and family.
 
 ## :gear: Functionality
-* Login or sign up with your screen name
-* Create a new circle for your new group chat
-* Add new members to your circle
-* Send instant messages to chat in your circles
+* Login or sign up with a unique screen name
+* Create a new chatroom
+* Add new members to your chat
+* Send instant messages
 
 ## :hammer_and_pick: Technology Stack
 
 * React
 * Sass
 * Bootstrap
+* Vite
 * Firebase
 
 ## :rocket: Deployment

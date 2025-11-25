@@ -1,81 +1,81 @@
 import { useEffect, useState } from "react";
-import { CircleBar } from "../components/CircleBar.jsx";
+import { SideBar } from "../components/SideBar.jsx";
 import { ChatRoom } from "../components/ChatRoom.jsx";
-import { listCircles } from "../services";
+import { listChats } from "../services";
 import { firestore } from "../firebase";
 import { doc, onSnapshot } from "firebase/firestore";
-import { CIRCLES } from "../utility";
+import { CHATS } from "../utility";
 
 export const Home = ({ user, setUser, fetchUser }) => {
-  const [showCircleBar, setShowCircleBar] = useState(true);
-  const [circles, setCircles] = useState([]);
-  const [currentCircle, setCurrentCircle] = useState();
+  const [showSideBar, setShowSideBar] = useState(true);
+  const [chats, setChats] = useState([]);
+  const [currentChat, setCurrentChat] = useState();
   const [loaded, setLoaded] = useState(false);
 
-  const fetchCircles = async () => {
-    const response = await listCircles(user.circles);
-    setCircles(response);
+  const fetchChats = async () => {
+    const response = await listChats(user.chats);
+    setChats(response);
   };
 
-  // Refresh circles when user adds a new circle
+  // Refresh chats when user adds a new chat
   useEffect(() => {
-    console.log("fetching circles");
-    fetchCircles();
+    console.log("fetching chats");
+    fetchChats();
   }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Set current circle when circles are loaded or first circle is added
+  // Set current chat when chats are loaded or first chat is added
   useEffect(() => {
-    console.log("set current circle");
-    if (!circles.length) return;
-    if (!currentCircle) {
-      setCurrentCircle(circles[0]);
+    console.log("set current chat");
+    if (!chats.length) return;
+    if (!currentChat) {
+      setCurrentChat(chats[0]);
     } else {
-      const updatedCircle = circles.find((circle) => {
-        if (!circle) return false;
-        return circle.id === currentCircle.id;
+      const updatedChat = chats.find((chat) => {
+        if (!chat) return false;
+        return chat.id === currentChat.id;
       });
-      setCurrentCircle(updatedCircle);
+      setCurrentChat(updatedChat);
     }
-  }, [circles]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [chats]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // If data is loaded, set flag that data is loaded
   useEffect(() => {
     console.log("set load state");
-    if (currentCircle && !loaded) setLoaded(true);
-  }, [currentCircle, loaded]);
+    if (currentChat && !loaded) setLoaded(true);
+  }, [currentChat, loaded]);
 
-  // If data is loaded, attach listeners to all circles to display live messages
+  // If data is loaded, attach listeners to all chats to display live messages
   useEffect(() => {
     console.log("add message listeners");
-    if (loaded && user.circles.length) {
-      user.circles.map((circle) => {
-        const circleDoc = doc(firestore, CIRCLES, circle);
-        const unsubscribe = onSnapshot(circleDoc, () => {
-          fetchCircles();
+    if (loaded && user.chats.length) {
+      user.chats.map((chat) => {
+        const chatDoc = doc(firestore, CHATS, chat);
+        const unsubscribe = onSnapshot(chatDoc, () => {
+          fetchChats();
         });
         return () => {
           unsubscribe();
         };
       });
     }
-  }, [loaded, user.circles]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [loaded, user.chats]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div id="home-page">
-      <CircleBar
+      <SideBar
         user={user}
-        circles={circles}
-        setCurrentCircle={setCurrentCircle}
-        showCircleBar={showCircleBar}
-        setShowCircleBar={setShowCircleBar}
+        chats={chats}
+        setCurrentChat={setCurrentChat}
+        showSideBar={showSideBar}
+        setShowSideBar={setShowSideBar}
         fetchUser={fetchUser}
       />
       <ChatRoom
         user={user}
-        currentCircle={currentCircle}
-        showCircleBar={showCircleBar}
-        setShowCircleBar={setShowCircleBar}
-        setCircles={setCircles}
+        currentChat={currentChat}
+        showSideBar={showSideBar}
+        setShowSideBar={setShowSideBar}
+        setChats={setChats}
         fetchUser={fetchUser}
         setUser={setUser}
       />

@@ -1,7 +1,7 @@
 @use './variables' as *;
 
-.circle-bar-panel {
-  width: $circleBar-width;
+.side-bar-panel {
+  width: $side-bar-width;
   height: 100%;
   border-right: 1px solid $color-gray;
   padding: $spacing-primary;
@@ -10,7 +10,7 @@
   background-color: $color-secondary;
 }
 
-.circle-bar-circle {
+.side-bar-chat {
   border: 1px solid $color-black;
   height: 120px;
   width: 120px;

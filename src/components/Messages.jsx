@@ -2,13 +2,13 @@ import "../styles/Messages.scss";
 import { AddUserModal } from "./AddUserModal.jsx";
 import { HiUserAdd, HiMenu, RiChatDeleteLine, BiExit } from "../icons.js";
 import { useEffect } from "react";
-import { DeleteCircleModal } from "./DeleteCircleModal.jsx";
+import { DeleteChatModal } from "./DeleteChatModal.jsx";
 import { SignOutModal } from "./SignOutModal.jsx";
 
 export const Messages = ({
-  currentCircle,
-  setShowCircleBar,
-  showCircleBar,
+  currentChat,
+  setShowSideBar,
+  showSideBar,
   fetchUser,
   user,
   setUser,
@@ -16,7 +16,7 @@ export const Messages = ({
   useEffect(() => {
     const element = document.getElementById("message-window");
     element.scrollTop = element.scrollHeight;
-  }, [currentCircle]);
+  }, [currentChat]);
 
   const renderIcons = () => {
     return (
@@ -32,7 +32,7 @@ export const Messages = ({
         <button
           type="button"
           data-bs-toggle="modal"
-          data-bs-target="#delete-circle-modal"
+          data-bs-target="#delete-chat-modal"
           className="mx-2 icon"
         >
           <RiChatDeleteLine />
@@ -52,11 +52,11 @@ export const Messages = ({
   const renderHeader = () => {
     return (
       <div className="row py-2 fs-6 sticky-top message-window-header">
-        <div className="col-4" onClick={() => setShowCircleBar(!showCircleBar)}>
+        <div className="col-4" onClick={() => setShowSideBar(!showSideBar)}>
           <HiMenu className="icon" />
         </div>
         <div className="col-4 text-center fw-bold">
-          {currentCircle && currentCircle.name}
+          {currentChat && currentChat.name}
         </div>
         {renderIcons()}
       </div>
@@ -67,8 +67,8 @@ export const Messages = ({
     <div id="message-window" className="col">
       {renderHeader()}
       <div>
-        {currentCircle &&
-          currentCircle.messages.map((message, index) => {
+        {currentChat &&
+          currentChat.messages.map((message, index) => {
             const isUserMessage = message.screenName === user.screenName;
             return (
               <div
@@ -87,11 +87,11 @@ export const Messages = ({
       </div>
 
       {<SignOutModal setUser={setUser} />}
-      {<AddUserModal currentCircle={currentCircle} />}
+      {<AddUserModal currentChat={currentChat} />}
       {
-        <DeleteCircleModal
+        <DeleteChatModal
           fetchUser={fetchUser}
-          currentCircle={currentCircle}
+          currentChat={currentChat}
         />
       }
     </div>

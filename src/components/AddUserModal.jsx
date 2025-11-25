@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { updateCircle } from "../services.js";
+import { updateChat } from "../services.js";
 
-export const AddUserModal = ({ currentCircle }) => {
+export const AddUserModal = ({ currentChat }) => {
   const [newUser, setNewUser] = useState("");
 
   const handleNewUser = (event) => setNewUser(event.target.value);
 
   const handleAddUser = async () => {
-    await updateCircle({ circleId: currentCircle.id, userToAdd: newUser });
+    await updateChat({ chatId: currentChat.id, userToAdd: newUser });
     setNewUser("");
   };
 
@@ -25,8 +25,8 @@ export const AddUserModal = ({ currentCircle }) => {
             />
             <div>
               <div className="pt-3 fw-bold">Current members:</div>
-              {currentCircle &&
-                currentCircle.users.map((user) => <div key={user}>{user}</div>)}
+              {currentChat &&
+                currentChat.users.map((user) => <div key={user}>{user}</div>)}
             </div>
           </div>
           <div className="modal-footer">

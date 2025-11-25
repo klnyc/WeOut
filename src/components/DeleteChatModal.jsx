@@ -1,17 +1,17 @@
-import { deleteCircle } from "../services.js";
+import { deleteChat } from "../services.js";
 
-export const DeleteCircleModal = ({ fetchUser, currentCircle }) => {
-  const handleDeleteCircle = async (circleId) => {
-    await deleteCircle(circleId);
+export const DeleteChatModal = ({ fetchUser, currentChat }) => {
+  const handleDeleteChat = async (chatId) => {
+    await deleteChat(chatId);
     fetchUser();
   };
 
   return (
-    <div className="modal fade" id="delete-circle-modal">
+    <div className="modal fade" id="delete-chat-modal">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-body">
-            This circle and all of its messages will be deleted forever.
+            This chat and all of its messages will be deleted forever.
           </div>
           <div className="modal-footer">
             <button
@@ -25,7 +25,7 @@ export const DeleteCircleModal = ({ fetchUser, currentCircle }) => {
               type="button"
               className="btn btn-primary"
               data-bs-dismiss="modal"
-              onClick={() => handleDeleteCircle(currentCircle.id)}
+              onClick={() => handleDeleteChat(currentChat.id)}
             >
               Delete
             </button>

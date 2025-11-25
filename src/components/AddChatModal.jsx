@@ -1,28 +1,28 @@
 import { useState } from "react";
-import { createCircle } from "../services.js";
+import { createChat } from "../services.js";
 
-export const AddCircleModal = ({ user, fetchUser }) => {
-  const [circleName, setCircleName] = useState("");
+export const AddChatModal = ({ user, fetchUser }) => {
+  const [chatName, setChatName] = useState("");
 
-  const handleCircleName = (event) => setCircleName(event.target.value);
+  const handleChatName = (event) => setChatName(event.target.value);
 
-  const handleAddCircle = async () => {
-    await createCircle(circleName, user.screenName);
+  const handleAddChat = async () => {
+    await createChat(chatName, user.screenName);
     fetchUser();
-    setCircleName("");
+    setChatName("");
   };
 
   return (
-    <div className="modal fade" id="add-circle-modal">
+    <div className="modal fade" id="add-chat-modal">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-body">
             <input
-              name="circleName"
+              name="chatName"
               className="form-control"
-              placeholder="Name of new circle"
-              value={circleName}
-              onChange={handleCircleName}
+              placeholder="Name of new chat"
+              value={chatName}
+              onChange={handleChatName}
             />
           </div>
           <div className="modal-footer">
@@ -37,7 +37,7 @@ export const AddCircleModal = ({ user, fetchUser }) => {
               type="button"
               className="btn btn-primary"
               data-bs-dismiss="modal"
-              onClick={handleAddCircle}
+              onClick={handleAddChat}
             >
               Add
             </button>

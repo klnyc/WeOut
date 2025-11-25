@@ -14,7 +14,7 @@ import {
   arrayRemove,
   deleteDoc,
 } from "firebase/firestore";
-import { USERS, CIRCLES, EMAIL_DOMAIN } from "./utility";
+import { USERS, CHATS, EMAIL_DOMAIN } from "./utility";
 
 export const authenticateUser = async (screenName, password) => {
   const email = screenName + EMAIL_DOMAIN;
@@ -39,7 +39,7 @@ export const createUser = async (screenName, password) => {
   const email = screenName + EMAIL_DOMAIN;
   const user = {
     screenName,
-    circles: [],
+    chats: [],
   };
 
   try {
@@ -59,75 +59,75 @@ export const signOutUser = async () => {
   }
 };
 
-export const createCircle = async (circleName, screenName) => {
-  const circle = {
-    name: circleName,
+export const createChat = async (chatName, screenName) => {
+  const chat = {
+    name: chatName,
     creator: screenName,
     users: [screenName],
     messages: [],
   };
 
   try {
-    const circleDoc = doc(collection(firestore, CIRCLES));
+    const chatDoc = doc(collection(firestore, CHATS));
     const userDoc = doc(firestore, USERS, screenName);
 
-    await setDoc(circleDoc, { ...circle, id: circleDoc.id });
-    await updateDoc(userDoc, { circles: arrayUnion(circleDoc.id) });
+    await setDoc(chatDoc, { ...chat, id: chatDoc.id });
+    await updateDoc(userDoc, { chats: arrayUnion(chatDoc.id) });
   } catch (error) {
     throw Error(error);
   }
 };
 
-export const getCircle = async (id) => {
+export const getChat = async (id) => {
   try {
-    const circleDoc = doc(firestore, CIRCLES, id);
-    const circle = await getDoc(circleDoc);
-    return circle.data();
+    const chatDoc = doc(firestore, CHATS, id);
+    const chat = await getDoc(chatDoc);
+    return chat.data();
   } catch (error) {
     throw Error(error);
   }
 };
 
-export const listCircles = async (circleIds) => {
+export const listChats = async (chatIds) => {
   try {
-    const response = await Promise.all(circleIds.map((id) => getCircle(id)));
+    const response = await Promise.all(chatIds.map((id) => getChat(id)));
     return response;
   } catch (error) {
     throw Error(error);
   }
 };
 
-export const deleteCircle = async (circleId) => {
+export const deleteChat = async (chatId) => {
   try {
-    const circleDoc = doc(firestore, CIRCLES, circleId);
-    const circle = await getDoc(circleDoc);
-    const users = circle.data().users;
+    const chatDoc = doc(firestore, CHATS, chatId);
+    const chat = await getDoc(chatDoc);
+    const users = chat.data().users;
 
     users.forEach(async (screenName) => {
       const userDoc = doc(firestore, USERS, screenName);
-      await updateDoc(userDoc, { circles: arrayRemove(circleId) });
+      await updateDoc(userDoc, { chats: arrayRemove(chatId) });
     });
 
-    await deleteDoc(circleDoc);
+    await deleteDoc(chatDoc);
   } catch (error) {
     throw Error(error);
   }
 };
 
-export const updateCircle = async (request) => {
+export const updateChat = async (request) => {
   try {
-    const { circleId, message, userToAdd } = request;
-    const circleDoc = doc(firestore, CIRCLES, circleId);
+    const { chatId, message, userToAdd } = request;
+    const chatDoc = doc(firestore, CHATS, chatId);
 
     if (message) {
-      await updateDoc(circleDoc, { messages: arrayUnion(message) });
+      await updateDoc(chatDoc, { messages: arrayUnion(message) });
     }
 
     if (userToAdd) {
       const userDoc = doc(firestore, USERS, userToAdd);
 
-      await updateDoc(userDoc, { circles: arrayUnion(circleId) });
-      await updateDoc(circleDoc, { users: arrayUnion(userToAdd) });
+      await updateDoc(userDoc, { chats: arrayUnion(chatId) });
+      await updateDoc(chatDoc, { users: arrayUnion(userToAdd) });
     }
   } catch (error) {
     throw Error(error);

@@ -4,27 +4,27 @@ import { TextArea } from "./TextArea.jsx";
 
 export const ChatRoom = ({
   user,
-  currentCircle,
-  showCircleBar,
-  setShowCircleBar,
+  currentChat,
+  showSideBar,
+  setShowSideBar,
   fetchUser,
   setUser,
 }) => {
   return (
     <div
       className={`row row-cols-1 chat-room ${
-        showCircleBar && "shrink"
+        showSideBar && "shrink"
       }`}
     >
       <Messages
-        currentCircle={currentCircle}
-        setShowCircleBar={setShowCircleBar}
-        showCircleBar={showCircleBar}
+        currentChat={currentChat}
+        setShowSideBar={setShowSideBar}
+        showSideBar={showSideBar}
         fetchUser={fetchUser}
         user={user}
         setUser={setUser}
       />
-      {currentCircle && <TextArea user={user} currentCircle={currentCircle} />}
+      {currentChat && <TextArea user={user} currentChat={currentChat} />}
     </div>
   );
 };
