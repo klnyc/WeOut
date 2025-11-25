@@ -17,7 +17,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf node_modules dist build package-lock.json yarn.lock pnpm-lock.yaml",
+    "reinstall": "npm run clean && npm install"
   },
   "browserslist": {
     "production": [

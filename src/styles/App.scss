@@ -3,16 +3,16 @@
 .app {
   color: $color-primary;
   background-color: $color-light-gray;
-  min-height: 100vh;
+  height: 100vh;
   font-size: 13px;
 }
 
-.login-page,
-.home-page {
-  height: 100vh;
+#login-page,
+#home-page {
+  height: 100%;
 }
 
-.login-page {
+#login-page {
   display: flex;
   justify-content: center;
   align-items: center;
