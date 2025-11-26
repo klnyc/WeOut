@@ -94,10 +94,15 @@ export const Messages = ({
                   isUserMessage ? "user" : "member"
                 }`}
               >
-                <span>
-                  {message.screenName}: {message.message}
-                </span>
-                <span className="float-end">{message.timestamp}</span>
+                <div class="container p-0 m-0">
+                  <div class="row pb-1">
+                    <div class="col fw-bold">{message.screenName}</div>
+                    <div class="col text-end">{message.timestamp}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col">{message.message}</div>
+                  </div>
+                </div>
               </div>
             );
           })}

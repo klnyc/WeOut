@@ -10,7 +10,7 @@
 .message-bubble {
   border-radius: 16px;
   margin: 8px 0;
-  padding: 6px 16px;
+  padding: 10px $spacing-primary;
   overflow: auto;
 
   &.user {
