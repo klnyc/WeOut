@@ -3,10 +3,10 @@
 .login-form-panel {
   width: 360px;
   height: 360px;
-  border: 1px solid $color-gray;
+  border: 1px solid $border-color;
   border-radius: 12px;
   padding: $spacing-primary;
-  background-color: $color-secondary;
+  background-color: $color-light-gray;
 }
 
 .login-error {
@@ -16,11 +16,11 @@
 }
 
 .form-control {
-  border: 1px solid $color-gray;
+  border: 1px solid $border-color;
 
   &:focus {
     box-shadow: none;
-    border-color: $color-gray;
+    border-color: $border-color;
     outline: none;
   }
 }
@@ -29,7 +29,7 @@
   background-color: $color-primary;
 
   &:hover {
-    background-color: $color-primary;
+  background-color: $color-primary;
   }
 }
 

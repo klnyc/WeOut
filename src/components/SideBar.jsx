@@ -5,6 +5,7 @@ import { BiMessageRoundedAdd } from "../icons.js";
 export const SideBar = ({
   user,
   chats,
+  currentChat,
   setCurrentChat,
   showSideBar,
   fetchUser,
@@ -21,10 +22,13 @@ export const SideBar = ({
       <div id="side-bar-chats">
         {chats.map((chat) => {
           if (!chat) return null;
+          const isActiveChat = currentChat && currentChat.id === chat.id;
           return (
             <div
               key={chat.id}
-              className="side-bar-chat-name"
+              className={`side-bar-chat-name ${
+                isActiveChat ? "active-chat" : ""
+              }`}
               onClick={() => setCurrentChat(chat)}
             >
               {chat.name}

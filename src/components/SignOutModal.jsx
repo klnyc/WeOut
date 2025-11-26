@@ -12,7 +12,16 @@ export const SignOutModal = ({ setUser }) => {
     <div className="modal fade" id="log-out-modal">
       <div className="modal-dialog">
         <div className="modal-content">
-          <div className="modal-body">Sign out?</div>
+          <div className="modal-header">
+            <h5 className="modal-title">Sign out</h5>
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div className="modal-body">Would you like to sign out?</div>
           <div className="modal-footer">
             <button
               type="button"

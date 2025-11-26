@@ -3,11 +3,12 @@
 .side-bar-panel {
   width: $side-bar-width;
   height: 100%;
-  border-right: 1px solid $color-gray;
+  border-right: 1px solid $border-color;
   padding: $spacing-primary;
   transition: all 0.3s ease;
   visibility: visible;
-  background-color: $color-secondary;
+  background-color: $color-black;
+  color: $color-white
 }
 
 #side-bar-chats {
@@ -19,7 +20,12 @@
 .side-bar-chat-name {
   cursor: pointer;
 
+  &.active-chat {
+    font-weight: bold;
+    color: $color-primary;
+  }
+
   &:hover {
-    color: red;
+    color: $color-primary;
   }
 }

@@ -1,7 +1,7 @@
 @use './variables' as *;
 
 .app {
-  color: $color-primary;
+  color: $color-black;
   background-color: $color-light-gray;
   height: 100vh;
   font-size: 13px;
@@ -32,6 +32,6 @@
   border: none;
 
   &:hover {
-    color: $color-primary;
+    color: $color-black;
   }
 }

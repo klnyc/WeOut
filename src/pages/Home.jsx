@@ -65,6 +65,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
       <SideBar
         user={user}
         chats={chats}
+        currentChat={currentChat}
         setCurrentChat={setCurrentChat}
         showSideBar={showSideBar}
         setShowSideBar={setShowSideBar}

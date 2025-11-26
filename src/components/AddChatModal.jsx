@@ -16,11 +16,19 @@ export const AddChatModal = ({ user, fetchUser }) => {
     <div className="modal fade" id="add-chat-modal">
       <div className="modal-dialog">
         <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">Create a new chat</h5>
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
           <div className="modal-body">
             <input
               name="chatName"
               className="form-control"
-              placeholder="Name of new chat"
               value={chatName}
               onChange={handleChatName}
             />
