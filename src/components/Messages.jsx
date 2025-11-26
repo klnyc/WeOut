@@ -21,6 +21,18 @@ export const Messages = ({
   setUser,
 }) => {
   useEffect(() => {
+    const tooltipTriggerList = document.querySelectorAll(
+      '[data-bs-toggle="tooltip"]'
+    );
+    const tooltipList = [...tooltipTriggerList].map(
+      (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+    );
+    return () => {
+      tooltipList.map((t) => t.dispose());
+    };
+  }, []);
+
+  useEffect(() => {
     const element = document.getElementById("message-window");
     element.scrollTop = element.scrollHeight;
   }, [currentChat]);
@@ -36,15 +48,28 @@ export const Messages = ({
           data-bs-target="#add-chat-modal"
           className={headerIconClass}
         >
-          <BiMessageRoundedAdd />
+          <div
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Add chat"
+          >
+            <BiMessageRoundedAdd />
+          </div>
         </button>
+
         <button
           type="button"
           data-bs-toggle="modal"
           data-bs-target="#add-user-modal"
           className={headerIconClass}
         >
-          <HiUserAdd />
+          <div
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Add member"
+          >
+            <HiUserAdd />
+          </div>
         </button>
         <button
           type="button"
@@ -52,15 +77,27 @@ export const Messages = ({
           data-bs-target="#delete-chat-modal"
           className={headerIconClass}
         >
-          <RiChatDeleteLine />
+          <div
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Delete chat"
+          >
+            <RiChatDeleteLine />
+          </div>
         </button>
         <button
           type="button"
           data-bs-toggle="modal"
-          data-bs-target="#log-out-modal"
+          data-bs-target="#sign-out-modal"
           className={headerIconClass}
         >
-          <BiExit />
+          <div
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Sign out"
+          >
+            <BiExit />
+          </div>
         </button>
       </div>
     );
@@ -94,13 +131,13 @@ export const Messages = ({
                   isUserMessage ? "user" : "member"
                 }`}
               >
-                <div class="container p-0 m-0">
-                  <div class="row pb-1">
-                    <div class="col fw-bold">{message.screenName}</div>
-                    <div class="col text-end">{message.timestamp}</div>
+                <div className="container p-0 m-0">
+                  <div className="row pb-1">
+                    <div className="col fw-bold">{message.screenName}</div>
+                    <div className="col text-end">{message.timestamp}</div>
                   </div>
-                  <div class="row">
-                    <div class="col">{message.message}</div>
+                  <div className="row">
+                    <div className="col">{message.message}</div>
                   </div>
                 </div>
               </div>

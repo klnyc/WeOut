@@ -1,12 +1,8 @@
 @use "./variables" as *;
 
 .login-form-panel {
-  width: 360px;
-  height: 360px;
-  border: 1px solid $border-color;
-  border-radius: 12px;
-  padding: $spacing-primary;
-  background-color: $color-light-gray;
+  width: 280px;
+  color: $color-black;
 }
 
 .login-error {
@@ -34,5 +30,5 @@
 }
 
 .btn-link {
-  color: $color-black;
+  color: $color-primary;
 }

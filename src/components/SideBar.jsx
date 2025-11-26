@@ -16,7 +16,7 @@ export const SideBar = ({
         showSideBar && "show"
       }`}
     >
-      <div className="text-center fw-bold pt-2 pb-3 fs-6">
+      <div className="pt-2 pb-3 fs-6 sticky-top text-center fw-bold">
         {user.screenName}
       </div>
       <div id="side-bar-chats">

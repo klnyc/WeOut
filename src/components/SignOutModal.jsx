@@ -9,7 +9,7 @@ export const SignOutModal = ({ setUser }) => {
   };
 
   return (
-    <div className="modal fade" id="log-out-modal">
+    <div className="modal fade" id="sign-out-modal">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
