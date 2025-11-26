@@ -34,6 +34,7 @@ export const AddUserModal = ({ currentChat }) => {
               className="form-control"
               value={newUser}
               onChange={handleNewUser}
+              placeholder="Enter screen name"
             />
             <div>
               <div className="pt-3 fw-bold">Current members:</div>

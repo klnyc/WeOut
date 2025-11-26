@@ -17,7 +17,7 @@ export const AddChatModal = ({ user, fetchUser }) => {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Create a new chat</h5>
+            <h5 className="modal-title">Create new chat</h5>
             <button
               type="button"
               className="btn-close"
@@ -31,6 +31,7 @@ export const AddChatModal = ({ user, fetchUser }) => {
               className="form-control"
               value={chatName}
               onChange={handleChatName}
+              placeholder="Enter chat name"
             />
           </div>
           <div className="modal-footer">

@@ -1,4 +1,4 @@
-@use './variables' as *;
+@use "./variables" as *;
 
 .app {
   color: $color-black;
@@ -16,6 +16,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(
+      black,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url("/public/background.jpg");
 }
 
 .btn {
