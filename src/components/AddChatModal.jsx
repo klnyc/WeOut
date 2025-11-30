@@ -58,7 +58,6 @@ export const AddChatModal = ({ user, fetchUser }) => {
             <button
               type="button"
               className="btn btn-primary"
-              data-bs-dismiss="modal"
               onClick={handleAddChat}
               disabled={!chatName.trim()}
             >

@@ -4,7 +4,7 @@ WeOut is an instant messaging application that allows users to create chatrooms 
 
 ## :gear: Functionality
 * Login or sign up with a unique screen name
-* Create a new chatroom
+* Create new chatrooms
 * Add new members to your chat
 * Send instant messages
 

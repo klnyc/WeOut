@@ -1,16 +1,10 @@
-import "../styles/Messages.scss";
-import { AddUserModal } from "./AddUserModal.jsx";
-import {
-  HiUserAdd,
-  HiMenu,
-  RiChatDeleteLine,
-  BiExit,
-  BiMessageRoundedAdd,
-} from "../icons.js";
 import { useEffect } from "react";
+import "../styles/Messages.scss";
+import { Header } from "./Header.jsx";
+import { AddUserModal } from "./AddUserModal.jsx";
+import { AddChatModal } from "./AddChatModal.jsx";
 import { DeleteChatModal } from "./DeleteChatModal.jsx";
 import { SignOutModal } from "./SignOutModal.jsx";
-import { AddChatModal } from "./AddChatModal.jsx";
 
 export const Messages = ({
   currentChat,
@@ -21,105 +15,17 @@ export const Messages = ({
   setUser,
 }) => {
   useEffect(() => {
-    const tooltipTriggerList = document.querySelectorAll(
-      '[data-bs-toggle="tooltip"]'
-    );
-    const tooltipList = [...tooltipTriggerList].map(
-      (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-    );
-    return () => {
-      tooltipList.map((t) => t.dispose());
-    };
-  }, []);
-
-  useEffect(() => {
     const element = document.getElementById("message-window");
     element.scrollTop = element.scrollHeight;
   }, [currentChat]);
 
-  const renderIcons = () => {
-    const headerIconClass = "mx-2 header-icon";
-
-    return (
-      <div className="col-4 text-end">
-        <button
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#add-chat-modal"
-          className={headerIconClass}
-        >
-          <div
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            title="Add chat"
-          >
-            <BiMessageRoundedAdd />
-          </div>
-        </button>
-
-        <button
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#add-user-modal"
-          className={headerIconClass}
-        >
-          <div
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            title="Add member"
-          >
-            <HiUserAdd />
-          </div>
-        </button>
-        <button
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#delete-chat-modal"
-          className={headerIconClass}
-        >
-          <div
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            title="Delete chat"
-          >
-            <RiChatDeleteLine />
-          </div>
-        </button>
-        <button
-          type="button"
-          data-bs-toggle="modal"
-          data-bs-target="#sign-out-modal"
-          className={headerIconClass}
-        >
-          <div
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            title="Sign out"
-          >
-            <BiExit />
-          </div>
-        </button>
-      </div>
-    );
-  };
-
-  const renderHeader = () => {
-    return (
-      <div className="row py-2 fs-6 sticky-top message-window-header">
-        <div className="col-4" onClick={() => setShowSideBar(!showSideBar)}>
-          <HiMenu className="header-icon" />
-        </div>
-        <div className="col-4 text-center fw-bold">
-          {currentChat && currentChat.name}
-        </div>
-        {renderIcons()}
-      </div>
-    );
-  };
-
   return (
     <div id="message-window" className="col">
-      {renderHeader()}
+      <Header
+        currentChat={currentChat}
+        setShowSideBar={setShowSideBar}
+        showSideBar={showSideBar}
+      />
       <div>
         {currentChat &&
           currentChat.messages.map((message, index) => {
