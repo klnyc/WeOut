@@ -5,6 +5,16 @@ export const CHATS = "chats";
 export const SCREEN_NAME = "SCREEN_NAME";
 export const EMAIL_DOMAIN = "@weout.web.app";
 
+export const getTimestamp = () => {
+  const date = new Date();
+  const dateString = date.toLocaleDateString();
+  const timeString = date.toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+  return `${dateString} ${timeString}`;
+};
+
 export const closeModal = (elementId) => {
   const modalElement = document.getElementById(elementId);
   if (modalElement) {
