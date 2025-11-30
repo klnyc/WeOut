@@ -16,6 +16,7 @@ export const AddChatModal = ({ user, fetchUser }) => {
       await createChat(chatName, user.screenName);
       fetchUser();
       closeModal("add-chat-modal");
+      setError("");
     } catch (error) {
       setError(error.message);
     } finally {

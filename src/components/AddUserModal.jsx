@@ -23,6 +23,7 @@ export const AddUserModal = ({ currentChat }) => {
       setSubmitting(true);
       await updateChat({ chatId: currentChat.id, userToAdd: newUser });
       closeModal("add-user-modal");
+      setError("");
     } catch (error) {
       setError(error.message);
     } finally {
