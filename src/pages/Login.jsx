@@ -3,7 +3,8 @@ import "../styles/App.scss";
 import "../styles/Login.scss";
 import { authenticateUser, createUser, getUser } from "../services.js";
 import { SCREEN_NAME } from "../utility.js";
-import { IoWarning, ImSpinner9 } from "../icons.js";
+import { ImSpinner9 } from "../icons.js";
+import { ErrorAlert } from "../components/ErrorAlert.jsx";
 
 export const Login = ({ setUser }) => {
   const [credentials, setCredentials] = useState({
@@ -21,19 +22,24 @@ export const Login = ({ setUser }) => {
   const handleLogin = async (event) => {
     const { screenName, password } = credentials;
     event.preventDefault();
-    setLoading(true);
 
     if (error) {
       setError("");
     }
 
+    if (!screenName || !password) {
+      setError("Please fill in all fields.");
+      setLoading(false);
+      return;
+    }
+
     try {
+      setLoading(true);
       loginState
         ? await authenticateUser(screenName, password)
         : await createUser(screenName, password);
       const user = await getUser(screenName);
       setUser(user);
-      setError("");
       window.sessionStorage.setItem(SCREEN_NAME, screenName);
     } catch (error) {
       setError(error.message);
@@ -84,15 +90,7 @@ export const Login = ({ setUser }) => {
           </div>
         )}
 
-        {error && (
-          <div
-            class="alert alert-danger d-flex align-items-center"
-            role="alert"
-          >
-            <IoWarning className="flex-shrink-0 me-2" size={24} />
-            <div>{error}</div>
-          </div>
-        )}
+        {error && <ErrorAlert errorMessage={error} />}
       </form>
     </div>
   );

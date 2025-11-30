@@ -1,14 +1,34 @@
 import { useState } from "react";
 import { updateChat } from "../services.js";
+import { ErrorAlert } from "./ErrorAlert.jsx";
+import { closeModal } from "../utility.js";
+import { ImSpinner9 } from "../icons.js";
 
 export const AddUserModal = ({ currentChat }) => {
   const [newUser, setNewUser] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleNewUser = (event) => setNewUser(event.target.value);
+  const handleNewUser = (event) => {
+    setNewUser(event.target.value);
+    if (currentChat.users.includes(event.target.value)) {
+      setError("User is already a member of this chat.");
+    } else {
+      setError("");
+    }
+  };
 
   const handleAddUser = async () => {
-    await updateChat({ chatId: currentChat.id, userToAdd: newUser });
-    setNewUser("");
+    try {
+      setSubmitting(true);
+      await updateChat({ chatId: currentChat.id, userToAdd: newUser });
+      closeModal("add-user-modal");
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setSubmitting(false);
+      setNewUser("");
+    }
   };
 
   if (!currentChat) {
@@ -31,13 +51,14 @@ export const AddUserModal = ({ currentChat }) => {
           <div className="modal-body">
             <input
               name="newUser"
-              className="form-control"
+              className="form-control mb-3"
               value={newUser}
               onChange={handleNewUser}
               placeholder="Enter screen name"
             />
-            <div>
-              <div className="pt-3 fw-bold">Current members:</div>
+            {error && <ErrorAlert errorMessage={error} />}
+            <div className={error ? "pt-3" : ""}>
+              <div className="fw-bold">Current members:</div>
               {currentChat.users.map((user) => (
                 <div key={user}>{user}</div>
               ))}
@@ -54,10 +75,14 @@ export const AddUserModal = ({ currentChat }) => {
             <button
               type="button"
               className="btn btn-primary"
-              data-bs-dismiss="modal"
               onClick={handleAddUser}
+              disabled={!newUser.trim() || error}
             >
-              Add
+              {submitting ? (
+                <ImSpinner9 className="spinner-icon" size={24} />
+              ) : (
+                "Add"
+              )}
             </button>
           </div>
         </div>

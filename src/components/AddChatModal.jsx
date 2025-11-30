@@ -1,15 +1,27 @@
 import { useState } from "react";
 import { createChat } from "../services.js";
+import { closeModal } from "../utility.js";
+import { ImSpinner9 } from "../icons.js";
 
 export const AddChatModal = ({ user, fetchUser }) => {
   const [chatName, setChatName] = useState("");
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChatName = (event) => setChatName(event.target.value);
 
   const handleAddChat = async () => {
-    await createChat(chatName, user.screenName);
-    fetchUser();
-    setChatName("");
+    try {
+      setSubmitting(true);
+      await createChat(chatName, user.screenName);
+      fetchUser();
+      closeModal("add-chat-modal");
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setSubmitting(false);
+      setChatName("");
+    }
   };
 
   return (
@@ -28,11 +40,12 @@ export const AddChatModal = ({ user, fetchUser }) => {
           <div className="modal-body">
             <input
               name="chatName"
-              className="form-control"
+              className="form-control mb-3"
               value={chatName}
               onChange={handleChatName}
               placeholder="Enter chat name"
             />
+            {error && <ErrorAlert errorMessage={error} />}
           </div>
           <div className="modal-footer">
             <button
@@ -47,8 +60,13 @@ export const AddChatModal = ({ user, fetchUser }) => {
               className="btn btn-primary"
               data-bs-dismiss="modal"
               onClick={handleAddChat}
+              disabled={!chatName.trim()}
             >
-              Add
+              {submitting ? (
+                <ImSpinner9 className="spinner-icon" size={24} />
+              ) : (
+                "Add"
+              )}
             </button>
           </div>
         </div>
