@@ -1,7 +1,23 @@
 @use "./variables" as *;
 
+#login-page {
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(
+      black,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url("/background.jpg");
+}
+
 .login-form-panel {
+  height: fit-content;
   width: 280px;
+  padding-top: 80px;
   color: $color-white;
 }
 
@@ -25,10 +41,28 @@
   background-color: $color-primary;
 
   &:hover {
-  background-color: $color-primary;
+    background-color: $color-primary;
   }
 }
 
 .btn-link {
   color: $color-primary;
+}
+
+.spinner-icon {
+  display: inline-block;
+  background-color: transparent;
+  color: $color-white;
+  transform-origin: center;
+  animation: spin 1s linear infinite;
+  will-change: transform;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

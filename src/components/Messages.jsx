@@ -38,7 +38,7 @@ export const Messages = ({
   }, [currentChat]);
 
   const renderIcons = () => {
-    const headerIconClass = "mx-2 icon";
+    const headerIconClass = "mx-2 header-icon";
 
     return (
       <div className="col-4 text-end">
@@ -107,7 +107,7 @@ export const Messages = ({
     return (
       <div className="row py-2 fs-6 sticky-top message-window-header">
         <div className="col-4" onClick={() => setShowSideBar(!showSideBar)}>
-          <HiMenu className="icon" />
+          <HiMenu className="header-icon" />
         </div>
         <div className="col-4 text-center fw-bold">
           {currentChat && currentChat.name}
@@ -134,7 +134,7 @@ export const Messages = ({
                 <div className="container p-0 m-0">
                   <div className="row pb-1">
                     <div className="col fw-bold">{message.screenName}</div>
-                    <div className="col text-end">{message.timestamp}</div>
+                    <div className="col-4 text-end">{message.timestamp}</div>
                   </div>
                   <div className="row">
                     <div className="col">{message.message}</div>

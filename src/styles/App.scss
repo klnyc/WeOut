@@ -12,21 +12,6 @@
   height: 100%;
 }
 
-#login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(
-      black,
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
-    ),
-    url("/public/background.jpg");
-}
-
 .btn {
   &:focus {
     box-shadow: none;
@@ -34,7 +19,7 @@
   }
 }
 
-.icon {
+.header-icon {
   background-color: transparent;
   cursor: pointer;
   color: $color-black;

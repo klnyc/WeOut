@@ -3,6 +3,7 @@ import "../styles/App.scss";
 import "../styles/Login.scss";
 import { authenticateUser, createUser, getUser } from "../services.js";
 import { SCREEN_NAME } from "../utility.js";
+import { IoWarning, ImSpinner9 } from "../icons.js";
 
 export const Login = ({ setUser }) => {
   const [credentials, setCredentials] = useState({
@@ -11,6 +12,7 @@ export const Login = ({ setUser }) => {
   });
   const [loginState, setLoginState] = useState(true);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleCredentialChange = (event) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -19,6 +21,11 @@ export const Login = ({ setUser }) => {
   const handleLogin = async (event) => {
     const { screenName, password } = credentials;
     event.preventDefault();
+    setLoading(true);
+
+    if (error) {
+      setError("");
+    }
 
     try {
       loginState
@@ -30,6 +37,8 @@ export const Login = ({ setUser }) => {
       window.sessionStorage.setItem(SCREEN_NAME, screenName);
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -56,21 +65,34 @@ export const Login = ({ setUser }) => {
             value={credentials.password}
           />
         </div>
-        <div className="text-center mb-3">
-          <button type="submit" className="btn btn-primary">
-            {loginState ? "Login" : "Sign Up"}
-          </button>
-        </div>
-        <div className="text-center mb-3">
-          <button
-            type="button"
-            className="btn btn-link"
-            onClick={() => setLoginState(!loginState)}
+        {loading ? (
+          <div className="text-center pt-3">
+            <ImSpinner9 className="spinner-icon" size={24} />
+          </div>
+        ) : (
+          <div className="d-grid gap-2 text-center w-100 pt-3 mb-3">
+            <button type="submit" className="btn btn-primary">
+              {loginState ? "Login" : "Sign Up"}
+            </button>
+            <button
+              type="button"
+              className="btn btn-link"
+              onClick={() => setLoginState(!loginState)}
+            >
+              {loginState ? "Create account" : "Login"}
+            </button>
+          </div>
+        )}
+
+        {error && (
+          <div
+            class="alert alert-danger d-flex align-items-center"
+            role="alert"
           >
-            {loginState ? "Create account" : "Login"}
-          </button>
-        </div>
-        {error && <div className="login-error">{error}</div>}
+            <IoWarning className="flex-shrink-0 me-2" size={24} />
+            <div>{error}</div>
+          </div>
+        )}
       </form>
     </div>
   );
