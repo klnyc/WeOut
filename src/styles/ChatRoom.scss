@@ -1,4 +1,4 @@
-@use './variables' as *;
+@use "./variables" as *;
 
 .chat-room {
   transition: all 0.3s ease;
@@ -8,5 +8,9 @@
 
   &.shrink {
     margin-left: $side-bar-width;
+
+    @media only screen and (max-width: $mobile-breakpoint) {
+      margin-left: $side-bar-width-mobile;
+    }
   }
 }

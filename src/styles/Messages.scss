@@ -1,10 +1,14 @@
-@use './variables' as *;
+@use "./variables" as *;
 
 #message-window {
   height: calc(100% - #{$textArea-height});
   overflow-y: auto;
   padding: 0 $spacing-primary;
   border-bottom: 1px solid $border-color;
+
+  @media only screen and (max-width: $mobile-breakpoint) {
+    padding: 0 $spacing-primary-mobile;
+  }
 }
 
 .message-bubble {

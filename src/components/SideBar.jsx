@@ -26,7 +26,7 @@ export const SideBar = ({
           return (
             <div
               key={chat.id}
-              className={`side-bar-chat-name ${
+              className={`side-bar-chat-name text-truncate text-nowrap ${
                 isActiveChat ? "active-chat" : ""
               }`}
               onClick={() => setCurrentChat(chat)}

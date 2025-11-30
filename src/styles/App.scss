@@ -4,7 +4,7 @@
   color: $color-black;
   background-color: $color-light-gray;
   height: 100vh;
-  font-size: 13px;
+  font-size: $font-size-primary;
 }
 
 #login-page,
@@ -16,16 +16,5 @@
   &:focus {
     box-shadow: none;
     outline: none;
-  }
-}
-
-.header-icon {
-  background-color: transparent;
-  cursor: pointer;
-  color: $color-black;
-  border: none;
-
-  &:hover {
-    color: $color-primary;
   }
 }

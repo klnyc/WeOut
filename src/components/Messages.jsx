@@ -39,8 +39,12 @@ export const Messages = ({
               >
                 <div className="container p-0 m-0">
                   <div className="row pb-1">
-                    <div className="col fw-bold">{message.screenName}</div>
-                    <div className="col-4 text-end">{message.timestamp}</div>
+                    <div className="col-6 fw-bold text-truncate text-nowrap">
+                      {message.screenName}
+                    </div>
+                    <div className="col-6 text-end text-truncate text-nowrap">
+                      {message.timestamp}
+                    </div>
                   </div>
                   <div className="row">
                     <div className="col">{message.message}</div>

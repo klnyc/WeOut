@@ -7,7 +7,11 @@ export const EMAIL_DOMAIN = "@weout.web.app";
 
 export const getTimestamp = () => {
   const date = new Date();
-  const dateString = date.toLocaleDateString();
+  const dateString = date.toLocaleDateString("en-US", {
+    year: "2-digit",
+    month: "2-digit",
+    day: "2-digit",
+  });
   const timeString = date.toLocaleTimeString([], {
     hour: "numeric",
     minute: "2-digit",

@@ -3,7 +3,7 @@ import { RiChatDeleteLine } from "react-icons/ri";
 import { BiMessageRoundedAdd, BiExit } from "react-icons/bi";
 import { ImSpinner9 } from "react-icons/im";
 import { IoWarning } from "react-icons/io5";
-import { MdSend } from "react-icons/md";
+import { MdSend, MdSettings } from "react-icons/md";
 
 export {
   HiUserAdd,
@@ -14,4 +14,5 @@ export {
   ImSpinner9,
   IoWarning,
   MdSend,
+  MdSettings,
 };

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "../styles/Header.scss";
 import { Tooltip } from "./Tooltip.jsx";
 import {
   HiUserAdd,
@@ -6,53 +7,77 @@ import {
   RiChatDeleteLine,
   BiExit,
   BiMessageRoundedAdd,
+  MdSettings,
 } from "../icons.js";
 
-const HeaderIcons = () => {
-  const headerIconClass = "mx-2 header-icon";
+const headerIconsConfig = [
+  {
+    "data-bs-target": "#add-chat-modal",
+    title: "Add chat",
+    icon: <BiMessageRoundedAdd />,
+  },
+  {
+    "data-bs-target": "#add-user-modal",
+    title: "Add member",
+    icon: <HiUserAdd />,
+  },
+  {
+    "data-bs-target": "#delete-chat-modal",
+    title: "Delete chat",
+    icon: <RiChatDeleteLine />,
+  },
+  { "data-bs-target": "#sign-out-modal", title: "Sign out", icon: <BiExit /> },
+];
 
+const HeaderIcons = () => {
   return (
-    <div className="col-4 text-end">
+    <div id="header-icons" className="col-4">
+      {headerIconsConfig.map((icon, index) => {
+        return (
+          <button
+            key={index}
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target={icon["data-bs-target"]}
+            className="header-icon"
+          >
+            <Tooltip title={icon.title}>{icon.icon}</Tooltip>
+          </button>
+        );
+      })}
+    </div>
+  );
+};
+
+const HeaderDropdown = () => {
+  return (
+    <div id="header-dropdown" className="col-4">
       <button
+        className="btn btn-secondary dropdown-toggle header-icon"
         type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#add-chat-modal"
-        className={headerIconClass}
+        id="headerDropdown"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
       >
-        <Tooltip title="Add chat">
-          <BiMessageRoundedAdd />
-        </Tooltip>
+        <MdSettings />
       </button>
-      <button
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#add-user-modal"
-        className={headerIconClass}
-      >
-        <Tooltip title="Add member">
-          <HiUserAdd />
-        </Tooltip>
-      </button>
-      <button
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#delete-chat-modal"
-        className={headerIconClass}
-      >
-        <Tooltip title="Delete chat">
-          <RiChatDeleteLine />
-        </Tooltip>
-      </button>
-      <button
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#sign-out-modal"
-        className={headerIconClass}
-      >
-        <Tooltip title="Sign out">
-          <BiExit />
-        </Tooltip>
-      </button>
+      <ul className="dropdown-menu" aria-labelledby="headerDropdown">
+        {headerIconsConfig.map((icon, index) => {
+          return (
+            <li>
+              <button
+                key={index}
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target={icon["data-bs-target"]}
+                className="header-icon dropdown-item"
+              >
+                {icon.icon} <span className="header-dropdown-menu-item">{icon.title}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };
@@ -72,13 +97,17 @@ export const Header = ({ currentChat, setShowSideBar, showSideBar }) => {
 
   return (
     <div className="row py-2 fs-6 sticky-top message-window-header">
-      <div className="col-4" onClick={() => setShowSideBar(!showSideBar)}>
-        <HiMenu className="header-icon" />
-      </div>
-      <div className="col-4 text-center fw-bold">
+      <button
+        className="col-4 pe-auto border-0 bg-transparent text-start"
+        onClick={() => setShowSideBar(!showSideBar)}
+      >
+        <HiMenu />
+      </button>
+      <div className="col text-center fw-bold text-truncate text-nowrap">
         {currentChat && currentChat.name}
       </div>
       <HeaderIcons />
+      <HeaderDropdown />
     </div>
   );
 };
