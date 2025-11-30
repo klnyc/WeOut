@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Tooltip } from "./Tooltip.jsx";
 import {
   HiUserAdd,
   HiMenu,
@@ -18,28 +19,19 @@ const HeaderIcons = () => {
         data-bs-target="#add-chat-modal"
         className={headerIconClass}
       >
-        <div
-          data-bs-toggle="tooltip"
-          data-bs-placement="bottom"
-          title="Add chat"
-        >
+        <Tooltip title="Add chat">
           <BiMessageRoundedAdd />
-        </div>
+        </Tooltip>
       </button>
-
       <button
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#add-user-modal"
         className={headerIconClass}
       >
-        <div
-          data-bs-toggle="tooltip"
-          data-bs-placement="bottom"
-          title="Add member"
-        >
+        <Tooltip title="Add member">
           <HiUserAdd />
-        </div>
+        </Tooltip>
       </button>
       <button
         type="button"
@@ -47,13 +39,9 @@ const HeaderIcons = () => {
         data-bs-target="#delete-chat-modal"
         className={headerIconClass}
       >
-        <div
-          data-bs-toggle="tooltip"
-          data-bs-placement="bottom"
-          title="Delete chat"
-        >
+        <Tooltip title="Delete chat">
           <RiChatDeleteLine />
-        </div>
+        </Tooltip>
       </button>
       <button
         type="button"
@@ -61,13 +49,9 @@ const HeaderIcons = () => {
         data-bs-target="#sign-out-modal"
         className={headerIconClass}
       >
-        <div
-          data-bs-toggle="tooltip"
-          data-bs-placement="bottom"
-          title="Sign out"
-        >
+        <Tooltip title="Sign out">
           <BiExit />
-        </div>
+        </Tooltip>
       </button>
     </div>
   );
