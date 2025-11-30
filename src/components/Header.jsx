@@ -31,7 +31,7 @@ const headerIconsConfig = [
 
 const HeaderIcons = () => {
   return (
-    <div id="header-icons" className="col-4">
+    <div id="header-icons" className="w-25 flex-fill">
       {headerIconsConfig.map((icon, index) => {
         return (
           <button
@@ -51,7 +51,7 @@ const HeaderIcons = () => {
 
 const HeaderDropdown = () => {
   return (
-    <div id="header-dropdown" className="col-4">
+    <div id="header-dropdown" className="w-25 flex-fill">
       <button
         className="btn btn-secondary dropdown-toggle header-icon"
         type="button"
@@ -96,14 +96,14 @@ export const Header = ({ currentChat, setShowSideBar, showSideBar }) => {
   }, []);
 
   return (
-    <div className="row py-2 fs-6 sticky-top message-window-header">
+    <div className="d-flex py-2 fs-6 sticky-top message-window-header">
       <button
-        className="col-4 pe-auto border-0 bg-transparent text-start"
+        className="w-25 flex-fill pe-auto border-0 bg-transparent text-start"
         onClick={() => setShowSideBar(!showSideBar)}
       >
         <HiMenu />
       </button>
-      <div className="col text-center fw-bold text-truncate text-nowrap">
+      <div className="justify-content-between text-center fw-bold text-truncate text-nowrap">
         {currentChat && currentChat.name}
       </div>
       <HeaderIcons />

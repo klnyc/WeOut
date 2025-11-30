@@ -29,15 +29,15 @@ export const Messages = ({
       <div>
         {currentChat &&
           currentChat.messages.map((message, index) => {
-            const isUserMessage = message.screenName === user.screenName;
+            const isOwnerMessage = message.screenName === user.screenName;
             return (
               <div
                 key={index}
                 className={`message-bubble ${
-                  isUserMessage ? "user" : "member"
+                  isOwnerMessage ? "owner" : "member"
                 }`}
               >
-                <div className="container p-0 m-0">
+                <div className="w-100 p-0 m-0">
                   <div className="row pb-1">
                     <div className="col-6 fw-bold text-truncate text-nowrap">
                       {message.screenName}
