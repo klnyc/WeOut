@@ -1,6 +1,4 @@
 import "../styles/SideBar.scss";
-import { AddChatModal } from "./AddChatModal.jsx";
-import { BiMessageRoundedAdd } from "../icons.js";
 
 export const SideBar = ({
   user,
@@ -8,7 +6,6 @@ export const SideBar = ({
   currentChat,
   setCurrentChat,
   showSideBar,
-  fetchUser,
 }) => {
   return (
     <div

@@ -1,6 +1,8 @@
 @use "./variables" as *;
 
-.chat-room {
+.chatroom {
+  display: flex;
+  flex-direction: column;
   transition: all 0.3s ease;
   height: 100%;
   padding: 0;

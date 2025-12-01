@@ -1,6 +1,12 @@
 import "../styles/ChatRoom.scss";
 import { Messages } from "./Messages.jsx";
 import { TextArea } from "./TextArea.jsx";
+import { Header } from "./Header.jsx";
+import { AddUserModal } from "./AddUserModal.jsx";
+import { AddChatModal } from "./AddChatModal.jsx";
+import { DeleteChatModal } from "./DeleteChatModal.jsx";
+import { SignOutModal } from "./SignOutModal.jsx";
+import { EmptyState } from "./EmptyState.jsx";
 
 export const ChatRoom = ({
   user,
@@ -11,20 +17,21 @@ export const ChatRoom = ({
   setUser,
 }) => {
   return (
-    <div
-      className={`row row-cols-1 chat-room ${
-        showSideBar && "shrink"
-      }`}
-    >
-      <Messages
+    <div className={`chatroom ${showSideBar && "shrink"}`}>
+      <Header
         currentChat={currentChat}
         setShowSideBar={setShowSideBar}
         showSideBar={showSideBar}
-        fetchUser={fetchUser}
-        user={user}
-        setUser={setUser}
       />
+
+      {currentChat && <Messages currentChat={currentChat} user={user} />}
       {currentChat && <TextArea user={user} currentChat={currentChat} />}
+      {!currentChat && <EmptyState />}
+
+      {<AddChatModal user={user} fetchUser={fetchUser} />}
+      {<AddUserModal currentChat={currentChat} />}
+      {<SignOutModal setUser={setUser} />}
+      {<DeleteChatModal fetchUser={fetchUser} currentChat={currentChat} />}
     </div>
   );
 };

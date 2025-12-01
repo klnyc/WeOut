@@ -41,7 +41,7 @@ export const TextArea = ({ user, currentChat }) => {
   return (
     <div className="d-flex p-0">
       <textarea
-        className="form-control no-focus message-text-area border-0 rounded-0"
+        className="form-control no-focus message-text-area rounded-0 border-start-0 border-end-0 border-bottom-0"
         value={textArea}
         onChange={handleTextAreaChange}
         onKeyDown={handleKeyDown}
