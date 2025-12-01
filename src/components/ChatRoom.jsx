@@ -15,6 +15,7 @@ export const ChatRoom = ({
   setShowSideBar,
   fetchUser,
   setUser,
+  loaded,
 }) => {
   return (
     <div className={`chatroom ${showSideBar && "shrink"}`}>
@@ -26,7 +27,7 @@ export const ChatRoom = ({
 
       {currentChat && <Messages currentChat={currentChat} user={user} />}
       {currentChat && <TextArea user={user} currentChat={currentChat} />}
-      {!currentChat && <EmptyState />}
+      {!currentChat && loaded && <EmptyState />}
 
       {<AddChatModal user={user} fetchUser={fetchUser} />}
       {<AddUserModal currentChat={currentChat} />}

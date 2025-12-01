@@ -79,6 +79,7 @@ export const Home = ({ user, setUser, fetchUser }) => {
         setChats={setChats}
         fetchUser={fetchUser}
         setUser={setUser}
+        loaded={loaded}
       />
     </div>
   );
