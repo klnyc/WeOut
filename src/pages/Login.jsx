@@ -3,7 +3,7 @@ import "../styles/App.scss";
 import "../styles/Login.scss";
 import { authenticateUser, createUser, getUser } from "../services.js";
 import { SCREEN_NAME } from "../utility.js";
-import { ImSpinner9 } from "../icons.js";
+import { ImSpinner9, ImBubbles } from "../icons.js";
 import { ErrorAlert } from "../components/ErrorAlert.jsx";
 
 export const Login = ({ setUser }) => {
@@ -51,7 +51,12 @@ export const Login = ({ setUser }) => {
   return (
     <div id="login-page">
       <form className="login-form-panel" onSubmit={handleLogin}>
-        <div className="text-center fs-4 fw-semibold">WeOut</div>
+        <div className="text-center fs-4 fw-semibold">
+          WeOut
+          <span className="ps-2">
+            <ImBubbles id="weout-logo-login" />
+          </span>
+        </div>
         <div className="form-group mb-3">
           <label>Screen name</label>
           <input

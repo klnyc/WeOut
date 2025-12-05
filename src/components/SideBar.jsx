@@ -1,4 +1,5 @@
 import "../styles/SideBar.scss";
+import { ImBubbles } from "../icons.js";
 
 export const SideBar = ({
   user,
@@ -13,7 +14,10 @@ export const SideBar = ({
         showSideBar && "show"
       }`}
     >
-      <div className="pt-2 pb-3 fs-6 sticky-top text-center fw-bold">
+      <div className="pt-2 pb-3 fs-6 sticky-top fw-bold text-truncate text-nowrap">
+        <span className="pe-2">
+          <ImBubbles id="weout-logo-sidebar" />
+        </span>
         {user.screenName}
       </div>
       <div id="side-bar-chats">

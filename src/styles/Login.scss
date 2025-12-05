@@ -58,6 +58,13 @@
   will-change: transform;
 }
 
+#weout-logo-login {
+  height: 30px;
+  width: 30px;
+  color: $color-primary;
+}
+
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
