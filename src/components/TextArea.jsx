@@ -6,6 +6,7 @@ import { MdSend } from "../icons.js";
 
 export const TextArea = ({ user, currentChat }) => {
   const [textArea, setTextArea] = useState("");
+  const disableSendButton = textArea.trim().length === 0;
 
   const sendMessage = async (text) => {
     if (!text.trim()) return;
@@ -21,8 +22,8 @@ export const TextArea = ({ user, currentChat }) => {
       message,
     };
 
-    await updateChat(request);
     setTextArea("");
+    await updateChat(request);
   };
 
   const handleKeyDown = async (event) => {
@@ -48,8 +49,9 @@ export const TextArea = ({ user, currentChat }) => {
         placeholder="Press enter to send..."
       ></textarea>
       <button
-        className="send-message-icon"
+        className={`send-message-icon ${disableSendButton ? "disabled" : ""}`}
         onClick={async () => await sendMessage(textArea)}
+        disabled={disableSendButton}
       >
         <MdSend size={24} />
       </button>
